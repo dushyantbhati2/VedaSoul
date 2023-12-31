@@ -29,7 +29,7 @@
         </div>
         <input type="text" name="email" placeholder="Email"/>
         <input type="password" name="password" placeholder="Password"/>
-        <a class="forgot-pass" href="forgot Password" style="font-weight: 500 ; color: #333;">Forgot Password?</a>
+        <a class="forgot-pass" href="{% url 'password_reset' %}" style="font-weight: 500 ; color: #333;">Forgot Password?</a>
         
         <button type="submit">Login</button>
         <div class="sign-in">
