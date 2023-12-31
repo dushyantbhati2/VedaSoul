@@ -133,4 +133,4 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_POST = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER ='klaxay0505@gmail.com'
-EMAIL_HOST_PASSWORD ='Enter your password'
+EMAIL_HOST_PASSWORD ='tlig dcti nhhb ewae'

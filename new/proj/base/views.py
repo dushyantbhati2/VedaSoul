@@ -15,7 +15,7 @@ def log_in(request):
             check=auth.authenticate(username=username,password=password)
         if check is not None:
             auth.login(request,check)
-            return redirect('index')
+            return redirect('home')
         else:
             messages.info(request,'Credentials Invalid')
             return redirect('login')
@@ -40,5 +40,8 @@ def register(request):
                 new_user.save()
                 user_login=auth.authenticate(username=username,password=password)
                 auth.login(request,user_login)
-                return redirect('index')
+                return redirect('home')
     return render(request,'register.html')
+
+def home(request):
+    return render(request,'home.html')
