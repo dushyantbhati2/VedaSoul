@@ -14,22 +14,22 @@
       <nav>
         <ul>
             
-          <li style="align-items: center;"><img  src="{% static 'img/home_icon.svg'%}" style="height: 65%;"><a href="{% url 'home' %}" style="text-decoration: none;color: #ffffff">Home</a></li>
+          <li ><img  src="{% static 'img/home_icon.svg'%}" style="height: 65%;color:white;"><a href="{% url 'home' %}" style="text-decoration: none;color: #ffffff">Home</a></li>
           
           
         </ul>
       </nav>
       <img class="logo" src="{% static 'img/ayurveda design.png' %}" alt="Logo" style="border-radius: 75%;">
-      <div class="side">
+      <div class="side"style="margin-right:-112px;">
           <input type="text" placeholder="Search on Ayu">
           <img src="{% static 'img/avatar.png' %}" alt="Avatar">
-          <button class="post">Make Ayu</button>
+          
       </div>
     </div>
   </header>
 
   <div class="banner">
-    <img class="banner-img" src="https://www.shutterstock.com/image-photo/different-fresh-herbs-spices-on-600nw-2162714633.jpg" alt="banner-img">
+    <img class="banner-img" src="{% static 'img/profilebackground.jpeg' %}" alt="banner-img">
   </div>
 
   <div class="bar">
@@ -39,7 +39,7 @@
       </ul>
   
       <div class="actions">
-        <button class="edit-profile-btn" >Edit profile</button>
+        <button onclick="togglediv()" class="edit-profile-btn" >Edit profile</button>
       </div>
     </div>
   </div>
@@ -53,8 +53,8 @@
         <p>❤️ Simply passionate about creating and transforming interfaces!</p>
   
         <ul class="list">
-          <li><img src="{% static 'img/place.svg' %}" alt="Place">Rio de Janeiro, Brasil</li>
-          <li><img src="{% static 'img/url.svg' %}" alt="URL">gabrieldesenvolvedor.com</li>
+          <li><img src="{% static 'img/place.svg' %}" alt="Place">Mumbai,India</li>
+          <li><img src="{% static 'img/url.svg' %}" alt="URL">google.com</li>
           <li><img src="{% static 'img/joined.svg' %}" alt="Joined">Joined October 2020</li>
           <li><img src="{% static 'img/born.svg' %}" alt="Born">Born the 19th of December 1998</li>
         </ul>
@@ -77,7 +77,7 @@
             <div class="info">
               <p>{{post.caption}}</p>
               {% if post.image %}
-              <img src="{{post.image.url}}">
+              <img class="post-img" src="{{post.image.url}}" style="border-radius: 5%;">
               {% endif %}
               <div class="actions">
                 <a href=""><img src="{% static 'img/comments.svg' %}" alt="Comments"> 3</a>
@@ -103,7 +103,7 @@
               <div class="profile">
                 <img src="{% static 'img/avatar.png' %}" alt="Avatar">
                 <div class="info">
-                  <strong>Gabriel <span>@botdogb</span></strong>
+                  <strong>ayudoctor<span>@aydoc</span></strong>
                   <button>Follow</button>
                 </div>
               </div>
@@ -114,7 +114,7 @@
               <div class="profile">
                 <img src="{% static 'img/avatar.png' %}" alt="Avatar">
                 <div class="info">
-                  <strong>Gabriel <span>@botdogb</span></strong>
+                  <strong>yog guru <span>@yogo</span></strong>
                   <button>Follow</button>
                 </div>
               </div>
@@ -125,7 +125,7 @@
               <div class="profile">
                 <img src="{% static 'img/avatar.png' %}" alt="Avatar">
                 <div class="info">
-                  <strong>Gabriel <span>@botdogb</span></strong>
+                  <strong>rohan <span>@rohan</span></strong>
                   <button>Follow</button>
                 </div>
               </div>
@@ -137,6 +137,34 @@
       </aside>
     </div>
   </div>
+
+  <!-- hidden-edit-profile -->
+  <form id="edit-profile-form" style=" box-shadow:1px 1px 10px 1px rgba(0,0,0,0.7);border-radius:30px;background-color:white;">
+    <div style="display:flex; ">
+    <img class="profile-change" style="border-radius: 50%;height:10vh;margin:8px;border:2px solid  #19885c;" src="{% static 'img/avatar.png' %}" alt="Uploaded Image">
+
+    <input type="file" id="file_input2" name="image" style="display:none;"/>
+
+    <button onclick="take_input()" class="edit-image-btn" style="background-color: #19885c;">Edit Image</button>
+    </div>
+  
+      <label for="username">Username:</label><br>
+      <input type="text" id="username" name="username" ><br>
+      
+      <label for="email">Email:</label><br>
+      <input type="email" id="email" name="email" ><br>
+      
+      <label for="bio">Bio:</label><br>
+      <!-- <input  type="text" id="bio" name="bio" placeholder="This is my bio..." style="height: 95px;"><br> -->
+      <textarea class="bio-input" id="bio" name="bio" rows="4" cols="50" placeholder="This is my bio..."></textarea><br>
+
+      <br>
+      
+      <button type="submit" class="edit-profile-btn" style="background-color: #19885c;">Save</button>
+    </form>  
+    
+  
+    <script src="{% static 'js/profile.js' %}"></script>
 
 
 </body>

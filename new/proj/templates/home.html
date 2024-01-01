@@ -57,7 +57,7 @@
 
         <div class="Menu_options">
             <span class="material-icons">person</span>
-            <a href="{% url 'profile' user.username %}"><h2>Profile</h2></a>
+            <a href="{% url 'profile' user.username %}" "><h2>Profile</h2></a>
         </div> 
 
         <div class="Menu_options">
@@ -66,7 +66,7 @@
         </div> 
        
 
-        <button class="tweet_btn">Post</button>
+        <button onclick="togglep()" id ="post-btn"class="tweet_btn">Post</button>
 
         <a href="{% url 'logout' %}"><button class="tweet_btn">Logout</button></a>
     </nav>
@@ -87,7 +87,10 @@
                     <img src="{% static 'img/profilePic.jpeg' %}" alt="profile image">
                     <input class="main-input" type="text" name="caption" placeholder="What's happening?"/>
                     <div class="Menu_options">
-                        <input type="file" name="image"/><span class="material-icons">image</span>
+
+                        <input type="file" id="file_input1" name="image" style="display:none;"/>
+
+                        <span onclick="inputmeathod()" class="material-icons">image</span>
                         
                     </div> 
                     <button type="submit" class="">Post</button>
@@ -186,7 +189,7 @@
                     <div class="infollow">
 
                     <div class="info">
-                      <strong>AyuGuru <div class="username">@AGuru</div></strong>
+                      <strong>Modi <div class="username">@namo</div></strong>
                       
                     </div>
                     <button class="follow-btn">Follow</button>
@@ -202,7 +205,7 @@
                     </div>
                     <div class="infollow">
                     <div class="info">
-                      <strong>AyuGyan <div class="username">@AGyan</div></strong>
+                      <strong>Modi <div class="username">@namo</div></strong>
                     </div>
                     <button class="follow-btn">Follow</button>
                     </div>
@@ -219,7 +222,7 @@
                     <div class="infollow">
 
                     <div class="info">
-                      <strong>AyuGuru <div class="username">@AGuru</div></strong>
+                      <strong>Modi <div class="username">@namo</div></strong>
                       
                     </div>
                     <button class="follow-btn">Follow</button>
@@ -229,14 +232,12 @@
                  
 
                     <div class="post_profile-image">
-
-
                         <img  src="{% static 'img/avatar.png' %}" alt="Avatar">
                     </div>
                     <div class="infollow">
 
                     <div class="info">
-                      <strong>AyuGuru <div class="username">@AGuru</div></strong>
+                      <strong>Modi<div class="username">@namo</div></strong>
                       
                     </div>
                     <button class="follow-btn">Follow</button>
@@ -275,7 +276,26 @@
     </aside>
     
     <!-- aside element ends -->
+    <div id="hidden-tweet"class="hidden_tweet_box" style="border-radius: 29px;overflow:hidden">
+        <form>
+            <div class="hidden_tweet_box-input">
+                <div class="hiddenflex">
+                <img src="{% static 'img/avatar.png' %}" alt="profile image" style="margin-top: 28px;">
+                <input class="hidden-main-input" type="text" placeholder="What is happening?">
+                </div>
+                <div class="hiddenflex2">
+                    <div class="material-icons"style="margin-left: 69%; margin-top:7%;">image</div>
+                    
+                    <button class="hidden-post-btn">Post</button>
+            </div>
 
-    
+            </div>
+        </form>
+
+
+    </div>
+
+<script src="{% static 'js/home.js' %}"></script>
+  
 </body>
 </html>

@@ -1,3 +1,13 @@
+/* Copyright © 2022 sajith-dilshan. All Rights Reserved.
+ * This project is licensed under the MIT License.
+ * Please find the license file in the root directory.
+ *
+ * style.css
+ *
+ * Author: sajith dilshan <sajithd784@gmail.com>
+ */
+  
+
 
  @font-face {
     font-family: "TwitterChirp";
@@ -8,16 +18,16 @@
 .logo{
     display: flex;
     height: 7%;
-    width:22%;
+    width:24%;
     border-radius: 100%;
     
     margin-left: 17px;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
    
 }
 html{
     font-family: 'Oxygen', sans-serif;
-
+   
 }
 
 *{
@@ -44,6 +54,7 @@ html{
 
 .Menu_options .material-icons{
     padding: 20px;
+    
 }
 
 .Menu_options h2{
@@ -166,6 +177,7 @@ main::-webkit-scrollbar{
 .tweet_box-input{
     display: flex;
     padding: 20px;
+   
 
 }
 
@@ -373,3 +385,79 @@ aside{
     display:flex;
     flex:50%;
 }
+  
+
+.hidden_tweet_box{
+    position: absolute;
+    z-index:10;
+    right: 31%;
+    top:20%;
+    width:625px;
+    height:300px;
+   background-color: rgb(255, 255, 255);
+    box-shadow:1px 1px 10px 1px rgba(0,0,0,0.4);
+   display: none;
+    
+}
+.hidden_tweet_box img{
+    width:50px;
+    height: 50px;
+    border-radius: 50%;
+    
+    margin-top: 40px;
+    margin-left: 20px;
+    margin-right: 15px;
+  
+}
+
+.hidden-main-input{
+   
+    height:50px;
+    border:none;
+    margin-top: 12px;
+    height: 100px;
+    flex:70%;
+    justify-content: space-between;
+    outline: none;
+    font-size:1.3rem ;
+   
+}
+
+
+.hidden-post-btn{
+    width: 23%;
+    background-color: #19885c;
+    border: none;
+    color: white;
+    font-size: 1.1rem;
+    border-radius: 30px;
+    height: 50px;
+    cursor: pointer;
+    margin-top: 7rem;
+    align-items: center;
+    margin-left: 15px;
+   
+ 
+   
+}
+.hiddenflex{
+    display: flex;
+}
+
+.hiddenflex2{
+    border-top: solid 1px #e6ecf0;
+
+}
+
+
+
+
+
+.hidden-main-input::placeholder{
+
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+    margin-top:-10rem
+
+}
+
