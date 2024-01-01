@@ -1,0 +1,143 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="{% static 'css/profile.css' %}" />
+  <title>Profile</title>
+</head>
+<body>
+
+  <header id="main-header">
+    <div class="container">
+      <nav>
+        <ul>
+            
+          <li style="align-items: center;"><img  src="{% static 'img/home_icon.svg'%}" style="height: 65%;"><a href="{% url 'home' %}" style="text-decoration: none;color: #ffffff">Home</a></li>
+          
+          
+        </ul>
+      </nav>
+      <img class="logo" src="{% static 'img/ayurveda design.png' %}" alt="Logo" style="border-radius: 75%;">
+      <div class="side">
+          <input type="text" placeholder="Search on Ayu">
+          <img src="{% static 'img/avatar.png' %}" alt="Avatar">
+          <button class="post">Make Ayu</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="banner">
+    <img class="banner-img" src="https://www.shutterstock.com/image-photo/different-fresh-herbs-spices-on-600nw-2162714633.jpg" alt="banner-img">
+  </div>
+
+  <div class="bar">
+    <div class="container">
+      <ul>
+       
+      </ul>
+  
+      <div class="actions">
+        <button class="edit-profile-btn" >Edit profile</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrapper-content">
+    <div class="container">
+      <aside class="profile">
+        <img src="{% static 'img/avatar.png'%}" class="avatar" alt="Gabriel de Jesus">
+        <h1>{{user_obj.username}}</h1>
+        <span>Har Har Mahadev</span>
+        <p>❤️ Simply passionate about creating and transforming interfaces!</p>
+  
+        <ul class="list">
+          <li><img src="{% static 'img/place.svg' %}" alt="Place">Rio de Janeiro, Brasil</li>
+          <li><img src="{% static 'img/url.svg' %}" alt="URL">gabrieldesenvolvedor.com</li>
+          <li><img src="{% static 'img/joined.svg' %}" alt="Joined">Joined October 2020</li>
+          <li><img src="{% static 'img/born.svg' %}" alt="Born">Born the 19th of December 1998</li>
+        </ul>
+        
+       
+
+      </aside>
+
+      <section class="timeline">
+        <nav>
+          <a href="" class="active">Post</a>
+          <a href="">Following</a>
+          <a href="">Followers</a>
+        </nav>
+
+        <ul class="tweets">
+          {% for post in posts %}
+          <li>
+            <img src="{% static 'img/avatar.png'%}" alt="Avatar">
+            <div class="info">
+              <p>{{post.caption}}</p>
+              {% if post.image %}
+              <img src="{{post.image.url}}">
+              {% endif %}
+              <div class="actions">
+                <a href=""><img src="{% static 'img/comments.svg' %}" alt="Comments"> 3</a>
+                <a href=""><img src="{% static 'img/retweet.svg' %}" alt="Retweet"> 8</a>
+                <a href=""><img src="{% static 'img/like.svg' %}" alt="Like"> 3</a>
+              </div>
+            </div>
+          </li>
+          {% endfor %}
+        </ul>
+      </section>
+
+      <aside class="widgets">
+        <div class="widget follow">
+          <div class="title">
+            <strong>Who to follow</strong>
+            <a href="">Refresh</a>
+            <a href="">View all</a>
+          </div>
+
+          <ul>
+            <li>
+              <div class="profile">
+                <img src="{% static 'img/avatar.png' %}" alt="Avatar">
+                <div class="info">
+                  <strong>Gabriel <span>@botdogb</span></strong>
+                  <button>Follow</button>
+                </div>
+              </div>
+              <a href="">x</a>
+            </li>
+            
+            <li>
+              <div class="profile">
+                <img src="{% static 'img/avatar.png' %}" alt="Avatar">
+                <div class="info">
+                  <strong>Gabriel <span>@botdogb</span></strong>
+                  <button>Follow</button>
+                </div>
+              </div>
+              <a href="">x</a>
+            </li>
+
+            <li>
+              <div class="profile">
+                <img src="{% static 'img/avatar.png' %}" alt="Avatar">
+                <div class="info">
+                  <strong>Gabriel <span>@botdogb</span></strong>
+                  <button>Follow</button>
+                </div>
+              </div>
+              <a href="">x</a>
+            </li>
+          </ul>
+
+        </div>
+      </aside>
+    </div>
+  </div>
+
+
+</body>
+</html>

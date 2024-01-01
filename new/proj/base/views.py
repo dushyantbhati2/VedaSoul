@@ -42,7 +42,13 @@ def register(request):
                 new_user.save()
                 user_login=auth.authenticate(username=username,password=password)
                 auth.login(request,user_login)
+                user_model=User.objects.get(username=username)
+                new_prof=models.Profile.objects.create(user=user_model,id_user=user_model.id)
+                new_prof.save()
                 return redirect('home')
+        else:
+            messages.info(request,'Password does not match with Confirm password')
+            return redirect('register')
     return render(request,'register.html')
 
 def logout(request):
@@ -51,9 +57,23 @@ def logout(request):
 
 @login_required(login_url='login')
 def home(request):
+    user_obj=User.objects.get(username=request.user.username)
+    user_profile=models.Profile.objects.get(user=user_obj)
     posts=models.Post.objects.all()
-    return render(request,'home.html',{'posts':posts})
+    return render(request,'home.html',{'posts':posts,'user_profile':user_profile})
 
+def profile(request,pk):
+    user=pk
+    user_obj=User.objects.get(username=pk)
+    user_prof=models.Profile.objects.get(user=user_obj)
+    posts=models.Post.objects.filter(user=pk)
+    
+    context={
+        'user_obj':user_obj,
+        'user_prof':user_prof,
+        'posts':posts
+    }
+    return render(request,'profile.html',context)
 @login_required(login_url='login')
 def post(request):
     if request.method=="POST":
