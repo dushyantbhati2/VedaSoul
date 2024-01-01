@@ -68,7 +68,7 @@
 
         <button class="tweet_btn">Post</button>
 
-
+        <a href="{% url 'logout' %}"><button class="tweet_btn">Logout</button></a>
     </nav>
     <!-- nav bar end -->
 
@@ -118,8 +118,9 @@
                     </div>
                     
                 </div>
+                {% if post.image %}
                 <img src="{{post.image.url}}" alt="java18">
-
+                {% endif %}
                 <div class="post_footer">
 
                     <span class="material-icons">chat</span>

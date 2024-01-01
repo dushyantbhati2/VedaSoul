@@ -20,7 +20,7 @@ class Profile(models.Model):
 class Post(models.Model):
     id=models.UUIDField(primary_key=True,default=uuid.uuid4)
     user=models.CharField(max_length=100)
-    image=models.ImageField(upload_to="posts")
+    image=models.ImageField(upload_to="posts",blank=True)
     caption=models.CharField(max_length=100)
     location=models.CharField(max_length=200)
     upload_time=models.DateTimeField(default=datetime.now)
