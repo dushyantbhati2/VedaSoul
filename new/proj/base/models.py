@@ -8,10 +8,11 @@ User=get_user_model()
 
 class Profile(models.Model):
     user=models.ForeignKey(User,on_delete=models.CASCADE)
+    name=models.CharField(max_length=100,blank=True)
     id_user=models.IntegerField()
     location=models.CharField(max_length=200,blank=True)
     bio=models.TextField(blank=True)
-    profimag=models.ImageField(upload_to="prof_images")
+    profimag=models.ImageField(upload_to="prof_images",default="avatar.png")
     
     def __str__(self):
         return self.user.username
@@ -19,7 +20,8 @@ class Profile(models.Model):
 
 class Post(models.Model):
     id=models.UUIDField(primary_key=True,default=uuid.uuid4)
-    user=models.CharField(max_length=100)
+    user_profile=models.ForeignKey(Profile,on_delete=models.CASCADE,null=True)
+    user=models.CharField(max_length=100,blank=True)
     image=models.ImageField(upload_to="posts",blank=True)
     caption=models.CharField(max_length=100)
     location=models.CharField(max_length=200)

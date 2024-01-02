@@ -30,6 +30,7 @@ def register(request):
         email=request.POST['email']
         password=request.POST['password']
         cnfpassword=request.POST['cnfPassword']
+        # name=request.POST['name']
         if password==cnfpassword:
             if User.objects.filter(email=email).exists():
                 messages.info(request,'Email already Registered')
@@ -66,7 +67,7 @@ def profile(request,pk):
     user=pk
     user_obj=User.objects.get(username=pk)
     user_prof=models.Profile.objects.get(user=user_obj)
-    posts=models.Post.objects.filter(user=pk)
+    posts=models.Post.objects.filter(user_profile=user_prof)
     
     context={
         'user_obj':user_obj,
@@ -76,13 +77,14 @@ def profile(request,pk):
     return render(request,'profile.html',context)
 @login_required(login_url='login')
 def post(request):
+    user_obj = User.objects.get(username=request.user.username)
+    user_prof = models.Profile.objects.get(user=user_obj)
     if request.method=="POST":
         user=request.user.username
-        print(user)
         image=request.FILES.get('image')
         caption=request.POST['caption']
         
-        new_post=models.Post.objects.create(user=user,image=image,caption=caption)
+        new_post=models.Post.objects.create(user=user,image=image,caption=caption,user_profile=user_prof)
         new_post.save()
         return redirect('home')
     else:
@@ -98,5 +100,28 @@ def communityProfile(request):
     return render(request,'communityProfile.html')
 
 
-
+def update(request):
+    user_prof=models.Profile.objects.get(user=request.user)
+    username=request.user.username
+    if request.method=="POST":
+        if request.FILES.get('image')==None:
+            image=user_prof.profimag
+            bio=request.POST['bio']
+            name=request.POST['name']
+            
+            user_prof.profimag=image
+            user_prof.bio=bio
+            user_prof.name=name
+            user_prof.save()
+            return redirect('profile/'+username)
+        else:
+            image=request.FILES.get('image')
+            bio=request.POST['bio']
+            name=request.POST['name']
+            
+            user_prof.profimag=image
+            user_prof.bio=bio
+            user_prof.name=name
+            user_prof.save()
+            return redirect('profile/'+username)
         

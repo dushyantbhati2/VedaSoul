@@ -47,10 +47,12 @@
   <div class="wrapper-content">
     <div class="container">
       <aside class="profile">
-        <img src="{% static 'img/avatar.png'%}" class="avatar" alt="Gabriel de Jesus">
+        <img src="{{user_prof.profimag.url}}" class="avatar" alt="Gabriel de Jesus">
         <h1>{{user_obj.username}}</h1>
-        <span>Har Har Mahadev</span>
-        <p>❤️ Simply passionate about creating and transforming interfaces!</p>
+        {% if user_prof.name %}
+        <h2>{{user_prof.name}}</h2>
+        {% endif %}
+        <p>{{user_prof.bio}}</p>
   
         <ul class="list">
           <li><img src="{% static 'img/place.svg' %}" alt="Place">Mumbai,India</li>
@@ -71,7 +73,7 @@
         </nav>
 
         <ul class="tweets">
-          {% for post in posts %}
+          {% for post in posts reversed %}
           <li>
             <img src="{% static 'img/avatar.png'%}" alt="Avatar">
             <div class="info">
@@ -136,20 +138,18 @@
   </div>
 
   <!-- hidden-edit-profile -->
-  <form id="edit-profile-form" style=" box-shadow:1px 1px 10px 1px rgba(0,0,0,0.7);border-radius:30px;background-color:white;">
+  <form id="edit-profile-form" style=" box-shadow:1px 1px 10px 1px rgba(0,0,0,0.7);border-radius:30px;background-color:white;" method="POST"  enctype="multipart/form-data" action="{% url 'update' %}">
+    {% csrf_token %}
     <div style="display:flex; ">
     <img class="profile-change" style="border-radius: 50%;height:10vh;margin:8px;border:2px solid  #19885c;" src="{% static 'img/avatar.png' %}" alt="Uploaded Image">
 
-    <input type="file" id="file_input2" name="image" style="display:none;"/>
+    <input type="file" id="file_input2" name="image" >
 
-    <button onclick="take_input()" class="edit-image-btn" style="background-color: #19885c;">Edit Image</button>
+    {% comment %} <button onclick="take_input()" name="image" class="edit-image-btn" style="background-color: #19885c;">Edit Image</button> {% endcomment %}
     </div>
   
-      <label for="username">Username:</label><br>
-      <input type="text" id="username" name="username" ><br>
-      
-      <label for="email">Email:</label><br>
-      <input type="email" id="email" name="email" ><br>
+      <label for="username">Name:</label><br>
+      <input type="text" id="username" name="name" ><br>
       
       <label for="bio">Bio:</label><br>
       <!-- <input  type="text" id="bio" name="bio" placeholder="This is my bio..." style="height: 95px;"><br> -->

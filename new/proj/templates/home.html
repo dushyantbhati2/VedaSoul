@@ -66,6 +66,7 @@
        
 
         <button onclick="togglep()" id ="post-btn"class="tweet_btn">Post</button>
+        <button type="submit" class="tweet_btn"><a href="{% url 'logout' %}">Logout</a></button>
 
         <!-- <a href="{% url 'logout' %}"><button class="tweet_btn">Logout</button></a> -->
 
@@ -93,7 +94,7 @@
             <form method="POST" action="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class="tweet_box-input">
-                    <img src="{% static 'img/profilePic.jpeg' %}" alt="profile image">
+                    <img src="{{user_profile.profimag.url}}" alt="profile image">
                     <input class="main-input" type="text" name="caption" placeholder="What's happening?"/>
                     <div class="Menu_options">
 
@@ -103,7 +104,6 @@
                         
                     </div> 
                     <button type="submit" class="">Post</button>
-
                 </div>
             </form>
 
@@ -111,7 +111,7 @@
         {% for post in posts reversed %}
         <div class="post">
             <div class="post_profile-image">
-                <img src="{% static 'img/page-profile-image.png' %}" alt="java-logo">
+                <img src="{{post.user_profile.profimag.url}}" alt="java-logo">
 
             </div>
 
@@ -120,7 +120,7 @@
                     <div class="post_header-text">
                         <h3>
                             <span class="header-icon-section">
-                                <span class="material-icons post_badge">verified</span>@{{post.user}}
+                                <span class="material-icons post_badge">verified</span><a href="profile/{{post.user}}"><b>@{{post.user}}</b></a>
                             </span>
                         </h3>
                     </div>
