@@ -67,7 +67,7 @@ def profile(request,pk):
     user=pk
     user_obj=User.objects.get(username=pk)
     user_prof=models.Profile.objects.get(user=user_obj)
-    posts=models.Post.objects.filter(user_profile=user_prof)
+    posts=models.Post.objects.filter(user=user_prof)
     
     context={
         'user_obj':user_obj,
@@ -125,3 +125,5 @@ def update(request):
             user_prof.save()
             return redirect('profile/'+username)
         
+def Like(request):
+    pass
