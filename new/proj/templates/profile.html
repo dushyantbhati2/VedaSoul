@@ -39,7 +39,16 @@
       </ul>
   
       <div class="actions">
+        {% if user.username == user_obj.username %}
         <button onclick="togglediv()" class="edit-profile-btn" >Edit profile</button>
+        {% else %}
+        <form action="{% url 'follow' %}" method="POST">
+        {% csrf_token %}
+        <input type="hidden" value="{{user.username}}" name="follower">
+        <input type="hidden" value="{{user_obj.username}}" name="user">
+        <button type="submit">{{button}}</button>
+        </form>
+        {% endif %}      
       </div>
     </div>
   </div>
@@ -67,15 +76,15 @@
 
       <section class="timeline">
         <nav>
-          <a href="" class="active">Post</a>
-          <a href="">Following</a>
-          <a href="">Followers</a>
+          <a href="" class="active">{{length}} Post</a>
+          <a href="">{{user_following}} Following</a>
+          <a href="">{{user_followers}} Followers</a>
         </nav>
 
         <ul class="tweets">
           {% for post in posts reversed %}
           <li>
-            <img src="{% static 'img/avatar.png'%}" alt="Avatar">
+            <img src="{{post.user_profile.profimag.url}}" alt="Avatar">
             <div class="info">
               <p style="margin-left: 10px;margin-top: 10px;">{{post.caption}}</p>
               {% if post.image %}
@@ -143,8 +152,8 @@
     <div style="display:flex; ">
     <img class="profile-change" style="border-radius: 50%;height:10vh;margin:8px;border:2px solid  #19885c;" src="{% static 'img/avatar.png' %}" alt="Uploaded Image">
 
-    <input type="file" id="file_input2" name="image" >
-
+    <input type="file" id="file_input2" name="image" "/>
+    <button onclick="take_input()" name="image" class="edit-image-btn" style="background-color: #19885c;">Edit Image</button> 
     {% comment %} <button onclick="take_input()" name="image" class="edit-image-btn" style="background-color: #19885c;">Edit Image</button> {% endcomment %}
     </div>
   

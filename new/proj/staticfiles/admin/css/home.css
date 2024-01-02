@@ -191,8 +191,9 @@ main::-webkit-scrollbar{
 }
 
 .post_profile-image img{
-    border-radius: 50%;
+    border-radius: 75%;
     height: 40px;
+
 
 }
 
@@ -249,6 +250,7 @@ main::-webkit-scrollbar{
 
 .post_profile-image{
     padding: 20px;
+   
 }
 
 

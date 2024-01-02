@@ -168,7 +168,8 @@ main::-webkit-scrollbar{
 
 .tweet_box-input img{
     border-radius: 50%;
-    height: 55px;
+    height: 65px;
+    width: 65px;
 
 
 }
@@ -214,7 +215,8 @@ main::-webkit-scrollbar{
 
 .post_profile-image img{
     border-radius: 50%;
-    height: 40px;
+    height: 55px;
+    width: 55px;
 
 }
 

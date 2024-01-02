@@ -20,3 +20,15 @@ function inputmeathod(){
    document.getElementById("file_input1").click();
   
 }
+let ht= document.getElementById("heart-icon");
+function heart(){
+ 
+  ht.classList.toggle("fa-solid");
+  if (ht.style.color == " #19885c"){
+     ht.style.color = "white";
+  }
+  else{
+    ht.style.color=" #19885c";
+  }
+  
+}

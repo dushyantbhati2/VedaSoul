@@ -68,11 +68,24 @@ def profile(request,pk):
     user_obj=User.objects.get(username=pk)
     user_prof=models.Profile.objects.get(user=user_obj)
     posts=models.Post.objects.filter(user=user_prof)
-    
+    follower=request.user.username
+    if models.FollowerCount.objects.filter(follower=follower,user=user):
+        button='unfollow'
+    else:
+        button='follow'
+
+    user_followers=len(models.FollowerCount.objects.filter(user=user))
+    user_following=len(models.FollowerCount.objects.filter(follower=pk))
+    length=len(posts)
+
     context={
         'user_obj':user_obj,
         'user_prof':user_prof,
-        'posts':posts
+        'posts':posts,
+        'button':button,
+        'user_following':user_following,
+        'user_followers':user_followers,
+        'length':length
     }
     return render(request,'profile.html',context)
 @login_required(login_url='login')
@@ -126,4 +139,32 @@ def update(request):
             return redirect('profile/'+username)
         
 def Like(request):
-    pass
+    username=request.user.username
+    post_id=request.GET.get('post_id')
+    post=models.Post.objects.get(id=post_id)
+    like=models.LikePost.objects.filter(post_id=post_id,username=username).first()
+
+    if like==None:
+        new_like=models.LikePost.objects.create(post_id=post_id,username=username)
+        new_like.save()
+        post.likes=post.likes+1
+        post.save()
+        return redirect('home')
+    else:
+        like.delete()
+        post.likes=post.likes-1
+        post.save()
+        return redirect('home')
+
+def follow(request):
+    if request.method=="POST":
+        follower=request.POST['follower']
+        user=request.POST['user']
+        if models.FollowerCount.objects.filter(follower=follower,user=user).first():
+            delete_follower=models.FollowerCount.objects.get(follower=follower,user=user)
+            delete_follower.delete()
+            return redirect('profile/'+user)
+        else:
+            new_follower=models.FollowerCount.objects.create(follower=follower,user=user)
+            new_follower.save()
+            return redirect('profile/'+user)
