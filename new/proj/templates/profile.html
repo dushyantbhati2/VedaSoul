@@ -75,9 +75,9 @@
           <li>
             <img src="{% static 'img/avatar.png'%}" alt="Avatar">
             <div class="info">
-              <p>{{post.caption}}</p>
+              <p style="margin-left: 10px;margin-top: 10px;">{{post.caption}}</p>
               {% if post.image %}
-              <img class="post-img" src="{{post.image.url}}" style="border-radius: 5%;">
+              <img class="post-img" src="{{post.image.url}}" style=" border-radius: 20px;width:430px !important;margin-top:30px;margin-bottom: 10px;">
               {% endif %}
               <div class="actions">
                 <a href=""><img src="{% static 'img/comments.svg' %}" alt="Comments"> 3</a>
@@ -90,7 +90,7 @@
         </ul>
       </section>
 
-      <aside class="widgets">
+      <aside class="widgets" >
         <div class="widget follow">
           <div class="title">
             <strong>Who to follow</strong>
@@ -98,38 +98,35 @@
             <a href="">View all</a>
           </div>
 
-          <ul>
+          <ul >
             <li>
               <div class="profile">
-                <img src="{% static 'img/avatar.png' %}" alt="Avatar">
+                <img src="{% static 'img/profileimg2.png' %}" alt="Avatar">
                 <div class="info">
                   <strong>ayudoctor<span>@aydoc</span></strong>
                   <button>Follow</button>
                 </div>
               </div>
-              <a href="">x</a>
             </li>
             
             <li>
               <div class="profile">
-                <img src="{% static 'img/avatar.png' %}" alt="Avatar">
+                <img src="{% static 'img/profileimg3.png' %}" alt="Avatar">
                 <div class="info">
                   <strong>yog guru <span>@yogo</span></strong>
                   <button>Follow</button>
                 </div>
               </div>
-              <a href="">x</a>
             </li>
 
             <li>
               <div class="profile">
-                <img src="{% static 'img/avatar.png' %}" alt="Avatar">
+                <img src="{% static 'img/profileimg4.png' %}" alt="Avatar">
                 <div class="info">
                   <strong>rohan <span>@rohan</span></strong>
                   <button>Follow</button>
                 </div>
               </div>
-              <a href="">x</a>
             </li>
           </ul>
 

@@ -1,0 +1,56 @@
+
+.community-profile_box1{
+    border-bottom: 1px solid #e6ecf0;
+
+}
+
+.community-profile_box1 form{
+    display: flex;
+    flex-direction: column;
+}
+
+.community-profile_box1 img{
+   
+object-fit: contain;
+width: 35rem;
+height: 20rem;
+
+}
+
+
+.community-profile_box2{
+   
+    width: 35rem;
+    height:5rem;
+    border-bottom: 1px solid #e6ecf0;
+
+    
+    }
+
+
+
+.community-main{
+    
+        flex: 0.5; 
+        border-right: 1px solid #e6ecf0;
+        min-width: fit-content;
+        overflow-y: scroll;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+        
+        margin-right: 8rem;
+    
+    }
+
+
+    .community-aside_container{
+        margin-top: 15px;
+        margin-bottom:20px;
+        padding: 20px;
+        background-color:  #f5f8fa;
+        border-radius: 20px;
+        width: 25rem;
+    }
+
+
+

@@ -87,3 +87,16 @@ def post(request):
         return redirect('home')
     else:
         return redirect('home')
+    
+
+def community(request):
+    return render(request,'community.html')
+
+
+
+def communityProfile(request):
+    return render(request,'communityProfile.html')
+
+
+
+        

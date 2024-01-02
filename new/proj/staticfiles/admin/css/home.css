@@ -1,15 +1,8 @@
-/* Copyright © 2022 sajith-dilshan. All Rights Reserved.
- * This project is licensed under the MIT License.
- * Please find the license file in the root directory.
- *
- * style.css
- *
- * Author: sajith dilshan <sajithd784@gmail.com>
- */
+
 
 
  @font-face {
-    font-family: "TwitterChirp";
+    font-family: 'Oxygen', sans-serif;
     src: url("../fonts/chirp-regular-web.woff") format("woff2"),
          url("../fonts/chirp-bold-web.woff") format("woff"),
          url("../fonts/chirp-heavy-web.woff") format("woff");
@@ -19,14 +12,11 @@
     height: 7%;
     width:22%;
     border-radius: 100%;
-    
     margin-left: 17px;
     margin-bottom: 20px;
-   
 }
 html{
     font-family: 'Oxygen', sans-serif;
-
 }
 
 *{
@@ -175,7 +165,7 @@ main::-webkit-scrollbar{
 .tweet_box-input{
     display: flex;
     padding: 20px;
-    height: ;
+    
 
 }
 

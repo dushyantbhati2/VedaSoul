@@ -1,0 +1,379 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>  
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+
+      <!-- <link rel="stylesheet" href="node_modules/reset.css/reset.css"> -->
+
+
+      <link rel="stylesheet" href="{% static 'css/home.css' %}">
+      <link rel="stylesheet" href="{% static 'css/community.css' %}">
+
+      <link rel="icon" href="favicon.png">
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Oxygen&display=swap" rel="stylesheet">
+      
+</head>
+<body>
+
+    <!-- nav bar starts -->
+    <nav >
+        <!-- <div class="nav_logo-wrapper">
+            <svg class="nav_logo" viewBox="0 0 24 24" aria-hidden="true" class="r-1cvl2hr r-4qtqp9 r-yyyyoo r-16y2uox r-8kz0gk r-dnmrzs r-bnwqim r-1plcrui r-lrvibr r-lrsllp"><g><path d="M23.643 4.937c-.835.37-1.732.62-2.675.733.962-.576 1.7-1.49 2.048-2.578-.9.534-1.897.922-2.958 1.13-.85-.904-2.06-1.47-3.4-1.47-2.572 0-4.658 2.086-4.658 4.66 0 .364.042.718.12 1.06-3.873-.195-7.304-2.05-9.602-4.868-.4.69-.63 1.49-.63 2.342 0 1.616.823 3.043 2.072 3.878-.764-.025-1.482-.234-2.11-.583v.06c0 2.257 1.605 4.14 3.737 4.568-.392.106-.803.162-1.227.162-.3 0-.593-.028-.877-.082.593 1.85 2.313 3.198 4.352 3.234-1.595 1.25-3.604 1.995-5.786 1.995-.376 0-.747-.022-1.112-.065 2.062 1.323 4.51 2.093 7.14 2.093 8.57 0 13.255-7.098 13.255-13.254 0-.2-.005-.402-.014-.602.91-.658 1.7-1.477 2.323-2.41z"></path></g></svg>
+        </div> -->
+        <a href="home.html">
+        <img class="logo" src="{% static 'img/ayurveda design.png'%}">
+       </a>
+        <!-- --------------------------------        this is for site logo   ----------------------------------------                          -->
+       
+        <div class="Menu_options active">
+            
+            <span class="material-icons">home</span>
+            <a href="{% url 'home' %}" style="text-decoration: none ;color:black">
+            <h2>Home</h2>
+            </a>
+        </div>
+
+        <div class="Menu_options">
+            <span class="material-icons">tag</span>
+            <h2>Explore</h2>
+        </div>
+
+        <div class="Menu_options">
+            <span class="material-icons">group</span>
+            <a href="{% url 'community' %}" style="text-decoration: none ;color:black">
+            <h2>Community</h2>
+        </a>
+        </div>
+
+        <div class="Menu_options">
+            <span class="material-icons">bookmark</span>
+            <h2>Bookmarks</h2>
+        </div> 
+
+        <div class="Menu_options">
+            <span class="material-icons">person</span>
+          <a href="{% url 'profile' user.username %}" style="text-decoration: none ;color:black">
+            <h2>Profile</h2>
+        </a> 
+        </div> 
+
+        <div class="Menu_options">
+            <span class="material-icons">book</span>
+            <h2>E-Books</h2>
+        </div> 
+       
+
+        <button onclick="togglep()" id ="post-btn"class="tweet_btn">Post</button>
+
+
+    </nav>
+    <!-- nav bar end -->
+
+  
+    <!-- main section start -->
+    <main>
+        <div class="search_input">
+            <span class="material-icons aside_search-icon">search</span>
+            <input type="text" placeholder="Search">
+ 
+        </div>
+        <div class="header">
+            <h2>Discover Communities</h2>
+        </div>
+        
+
+        <div class="cmt_follower_container">
+        
+        
+            <aside class="widgets">
+            <div class="widget follow">
+              <div class="title">
+                <strong>Who to follow</strong>
+              </div>
+    
+              <ul >
+                
+                  <a class="profile"  href="{% url 'communityProfile'%}" >
+                  
+
+                    <div class="cmt_profile-image">
+
+                        <img  src="{% static 'img/profileimg2.png'%}" alt="Avatar">
+                    </div>
+                    <div class="cmt-infollow">
+
+                    <div class="info">
+                      <strong >AyuGuru <div class="username">1k members</div></strong>
+                      
+                    </div>
+                    
+                    </div>
+                </a>
+
+                <a class="profile" href="">
+                 
+                    <div class="cmt_profile-image">
+
+                        <img src="{% static 'img/profileimg3.png'%}" alt="Avatar">
+
+                    </div>
+                    <div class="infollow">
+                    <div class="info">
+                      <strong>AyuGyan <div class="username">10k members</div></strong>
+                    </div>
+                    
+                    </div>
+                </a>
+
+                <a class="profile" href="">
+                 
+
+                    <div class="cmt_profile-image">
+
+
+                        <img  src="{% static 'img/profileimg4.png'%}" alt="Avatar">
+                    </div>
+                    <div class="infollow">
+
+                    <div class="info">
+                      <strong>AyuGuru <div class="username">17k members</div></strong>
+                      
+                    </div>
+                    
+                
+                </div>
+                </a>
+
+                <a class="profile"  href="">
+                 
+
+                    <div class="cmt_profile-image">
+
+                        <img  src="{% static 'img/profileimg2.png'%}" alt="Avatar">
+                    </div>
+                    <div class="cmt-infollow">
+
+                    <div class="info">
+                      <strong >AyuGuru <div class="username">1k members</div></strong>
+                      
+                    </div>
+                    
+                    </div>
+                </a>
+
+                <a class="profile" href="">
+                 
+                    <div class="cmt_profile-image">
+
+                        <img src="{% static 'img/profileimg3.png'%}" alt="Avatar">
+
+                    </div>
+                    <div class="infollow">
+                    <div class="info">
+                      <strong>AyuGyan <div class="username">10k members</div></strong>
+                    </div>
+                    
+                    </div>
+                </a>
+
+                <a class="profile" href="">
+                 
+
+                    <div class="cmt_profile-image">
+
+
+                        <img  src="{% static 'img/profileimg4.png'%}" alt="Avatar">
+                    </div>
+                    <div class="infollow">
+
+                    <div class="info">
+                      <strong>AyuGuru <div class="username">17k members</div></strong>
+                      
+                    </div>
+                    
+                
+                </div>
+                </a>
+                 
+
+                
+    
+              </ul>
+    
+            </div>
+          </aside>
+        </div>
+
+    </main>
+    <!-- main section end -->
+
+    <!-- aside element start -->
+    <aside>
+
+
+
+        <div class="aside_container">
+            
+            <h2 style="margin-top: 1%"><b>Subscribe to our Newsletter</b></h2>
+            <p style="color: #333;margin-bottom: -1px;">Email Address</p>
+       
+        <div class="email_input">
+            <span class="material-icons aside_search-icon">email</span>
+            <input type="email" placeholder="Email">
+ 
+        </div>
+
+        <div class="subscribe">
+            <button class="subscribe-btn">Subscribe</button>
+        </div>
+    </div>
+        
+      <!--      <div class="follower_container">
+        
+         
+            <aside class="widgets">
+            <div class="widget follow">
+              <div class="title">
+                <strong>Who to follow</strong>
+                <a href="">View all</a>
+              </div>
+    
+              <ul>
+                
+                  <a class="profile" href="">
+                 
+
+                    <div class="post_profile-image">
+
+
+                        <img  src="{% static 'img/avatar.png" alt="Avatar">
+                    </div>
+                    <div class="infollow">
+
+                    <div class="info">
+                      <strong>AyuGuru <div class="username">@AGuru</div></strong>
+                      
+                    </div>
+                    
+                    <button class="follow-btn">Follow</button>
+                    </div>
+                </a>
+
+                <a class="profile" href="">
+                 
+                    <div class="post_profile-image">
+
+                        <img src="{% static 'img/avatar.png" alt="Avatar">
+
+                    </div>
+                    <div class="infollow">
+                    <div class="info">
+                      <strong>AyuGyan <div class="username">@AGyan</div></strong>
+                    </div>
+                    <button class="follow-btn">Follow</button>
+                    </div>
+                </a>
+
+                <a class="profile" href="">
+                 
+
+                    <div class="post_profile-image">
+
+
+                        <img  src="{% static 'img/avatar.png" alt="Avatar">
+                    </div>
+                    <div class="infollow">
+
+                    <div class="info">
+                      <strong>AyuGuru <div class="username">@AGuru</div></strong>
+                      
+                    </div>
+                    <button class="follow-btn">Follow</button>
+                    </div>
+                </a>
+                <a class="profile" href="">
+                 
+
+                    <div class="post_profile-image">
+
+
+                        <img  src="{% static 'img/avatar.png" alt="Avatar">
+                    </div>
+                    <div class="infollow">
+
+                    <div class="info">
+                      <strong>AyuGuru <div class="username">@AGuru</div></strong>
+                      
+                    </div>
+                    <button class="follow-btn">Follow</button>
+                    </div>
+                </a>
+                <a class="profile" href="">
+                 
+
+                    <div class="post_profile-image">
+
+
+                        <img  src="{% static 'img/avatar.png" alt="Avatar">
+                    </div>
+                    <div class="infollow">
+
+                    <div class="info">
+                      <strong>AyuGuru <div class="username">@AGuru</div></strong>
+                      
+                    </div>
+                    <button class="follow-btn">Follow</button>
+                    </div>
+                </a>
+
+                
+     
+              </ul>
+    
+            </div>
+            
+          </aside>
+        </div>
+        -->
+            <!-- <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Save the date, because <a href="https://twitter.com/hashtag/JavaOne?src=hash&amp;ref_src=twsrc%5Etfw">#JavaOne</a> is back! Join the world’s premier <a href="https://twitter.com/hashtag/developer?src=hash&amp;ref_src=twsrc%5Etfw">#developer</a> conference in Las Vegas at <a href="https://twitter.com/Oracle?ref_src=twsrc%5Etfw">@Oracle</a> CloudWorld October 16–20, 2022.<br><br>Subscribe for the latest news about registration, the call for papers, luminary speakers, and more. <a href="https://t.co/hhSf3dMGc1">https://t.co/hhSf3dMGc1</a> <a href="https://t.co/OeDFukcM8K">pic.twitter.com/OeDFukcM8K</a></p>&mdash; Java (@java) <a href="https://twitter.com/java/status/1506310994112483328?ref_src=twsrc%5Etfw">March 22, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> -->
+        
+        </div>
+        
+    </aside>
+    
+    <!-- aside element ends
+
+      <div id="hidden-tweet"class="hidden_tweet_box" style="border-radius: 29px;overflow:hidden">
+            <form>
+                <div class="hidden_tweet_box-input">
+                    <div class="hiddenflex">
+                    <img src="{% static 'img/profilePic.jpeg" alt="profile image" style="margin-top: 28px;">
+                    <input class="hidden-main-input" type="text" placeholder="What is happening?">
+                    </div>
+                    <div class="hiddenflex2">
+                        <div class="material-icons"style="margin-left: 69%; margin-top:7%;">image</div>
+                        
+                        <button class="hidden-post-btn">Post</button>
+                </div>
+
+                </div>
+            </form>
+    
+
+        </div> -->
+
+
+    
+</body>
+</html>

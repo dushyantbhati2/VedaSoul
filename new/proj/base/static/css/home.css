@@ -30,9 +30,13 @@ html{
    
 }
 
+
 *{
     box-sizing: border-box;
+    
+   
 }
+
 
 :root{
     --twitter-theme-color: #19885c;
@@ -50,6 +54,12 @@ html{
     display: flex;
     align-items: center;
     cursor: pointer;
+    
+}
+
+.Menu_options a{
+    text-decoration: none;
+    color: black;
 }
 
 .Menu_options .material-icons{
@@ -430,7 +440,7 @@ aside{
     border: none;
     color: white;
     font-size: 1.1rem;
-    border-radius: 30px;
+    border-radius: 42px;
     height: 50px;
     cursor: pointer;
     margin-top: 7rem;
@@ -461,3 +471,11 @@ aside{
 
 }
 
+/* .logout-container{
+  display: flex;
+  margin-top: 20px;;
+}
+.logout-container img{
+    width:50px;
+    height:50px;
+} */
