@@ -32,45 +32,45 @@
         <!-- <div class="nav_logo-wrapper">
             <svg class="nav_logo" viewBox="0 0 24 24" aria-hidden="true" class="r-1cvl2hr r-4qtqp9 r-yyyyoo r-16y2uox r-8kz0gk r-dnmrzs r-bnwqim r-1plcrui r-lrvibr r-lrsllp"><g><path d="M23.643 4.937c-.835.37-1.732.62-2.675.733.962-.576 1.7-1.49 2.048-2.578-.9.534-1.897.922-2.958 1.13-.85-.904-2.06-1.47-3.4-1.47-2.572 0-4.658 2.086-4.658 4.66 0 .364.042.718.12 1.06-3.873-.195-7.304-2.05-9.602-4.868-.4.69-.63 1.49-.63 2.342 0 1.616.823 3.043 2.072 3.878-.764-.025-1.482-.234-2.11-.583v.06c0 2.257 1.605 4.14 3.737 4.568-.392.106-.803.162-1.227.162-.3 0-.593-.028-.877-.082.593 1.85 2.313 3.198 4.352 3.234-1.595 1.25-3.604 1.995-5.786 1.995-.376 0-.747-.022-1.112-.065 2.062 1.323 4.51 2.093 7.14 2.093 8.57 0 13.255-7.098 13.255-13.254 0-.2-.005-.402-.014-.602.91-.658 1.7-1.477 2.323-2.41z"></path></g></svg>
         </div> -->
-        <a href="home.html">
-        <img class="logo" src="{% static 'img/ayurveda design.png'%}">
+        <a href="{% url 'home' %}">
+        <img class="logo"  src="{% static 'img/ayurveda design.png'%}">
        </a>
         <!-- --------------------------------        this is for site logo   ----------------------------------------                          -->
        
         <div class="Menu_options active">
             
-            <span class="material-icons">home</span>
+            <span style = "font-size: 2rem;"class="material-icons">home</span>
             <a href="{% url 'home' %}" style="text-decoration: none ;color:black">
             <h2>Home</h2>
             </a>
         </div>
 
         <div class="Menu_options">
-            <span class="material-icons">tag</span>
+            <span style = "font-size: 2rem;"class="material-icons">tag</span>
             <h2>Explore</h2>
         </div>
 
         <div class="Menu_options">
-            <span class="material-icons">group</span>
+            <span style = "font-size: 2rem;"class="material-icons">group</span>
             <a href="{% url 'community' %}" style="text-decoration: none ;color:black">
             <h2>Community</h2>
         </a>
         </div>
 
         <div class="Menu_options">
-            <span class="material-icons">bookmark</span>
+            <span style = "font-size: 2rem;"class="material-icons">bookmark</span>
             <h2>Bookmarks</h2>
         </div> 
 
         <div class="Menu_options">
-            <span class="material-icons">person</span>
+            <span style = "font-size: 2rem;"class="material-icons">person</span>
           <a href="{% url 'profile' user.username %}" style="text-decoration: none ;color:black">
             <h2>Profile</h2>
         </a> 
         </div> 
 
         <div class="Menu_options">
-            <span class="material-icons">book</span>
+            <span style = "font-size: 2rem;"class="material-icons">book</span>
             <h2>E-Books</h2>
         </div> 
        
@@ -86,13 +86,14 @@
     <main class="community-main">
    
         <div class="header">
-            <h2>React</h2>
+            <h2>Ayu Guru</h2>
         </div>
+        
         
 
         <div class="community-profile_box1">
          
-                  <img src="{% static 'img/communityimg1.jpg' %}" alt="profile image">
+                  <img src="{% static 'img/communityimg2.jpg' %}" alt="profile image">
     
               
           
@@ -103,48 +104,155 @@
          
 
     
+        <div class="community-name-box">
+              <p class="community-name"style="font-size:1.9rem;margin:0px;margin-top:10px;margin-bottom:10px;">React</p>
+              <p><b>1.5k </b>members</p>
+        </div>
+ <button class="join-btn">join</button>
+    </div>
 
 
-</div>
-      {% for post in posts reversed %}
-      <div class="post">
-          <div class="post_profile-image">
-              <img src="{% static 'img/page-profile-image.png' %}" alt="java-logo">
 
-          </div>
+    <div class="post">
+        <div class="post_profile-image">
+            <img src="../images/page-profile-image.png" alt="java-logo">
 
-          <div class="post_body">
-              <div class="post_header">
-                  <div class="post_header-text">
-                      <h3>
-                          <span class="header-icon-section">
-                              <span class="material-icons post_badge">verified</span>@{{post.user}}
-                          </span>
-                      </h3>
-                  </div>
+        </div>
 
-                  <div class="post_header-discription">
-                      <p>{{post.caption}}<p>
-                  </div>
-                  
-              </div>
-              {% if post.image %}
-              <img src="{{post.image.url}}" alt="java18">
-              {% endif %}
-              <div class="post_footer">
+        <div class="post_body">
+            <div class="post_header">
+                <div class="post_header-text">
+                    <h3 style="font-size: 1.3rem;margin-top:1px;"> sanatan_prabhat
+                        <span class="header-icon-section">
+                            <span class="material-icons post_badge">verified</span>@sanatan_prabhat
+                        </span>
+                    </h3>
+                </div>
 
-                  <span class="material-icons">chat</span>
-                  <span class="material-icons">repeat</span>
-                  <span class="material-icons">favorite_border</span>
-                  <span class="material-icons">file_upload</span>
-                  
+                <div class="post_header-discription"style="max-width:30rem;">
+                    <p>Ayurveda's wisdom: Understanding disease stages, emphasizing prevention & root cause awareness.
 
-              </div>
+                        Early recognition in the incubation phase is key to stopping disease progression. 
+                        
+                        Special Article on #Ayurveda for a healthy life :
+                        https://sanatanprabhat.org/english/89632.html
+                        
+                        To read previous articles on Ayurveda :
+                        <a href="http://bit.ly/3rwWQut">http://bit.ly/3rwWQut</a>
+                        
+                        </p>
+                    <br>
+                 
+                        <img src="https://pbs.twimg.com/media/GChKT74aEAE_1EZ?format=png&name=small" alt="">
 
-          </div>
+                </div>
+                
+            </div>
+            <img src="../images/post-image.jpeg" alt="java18">
 
-      </div>
-      {% endfor %}
+            <div class="post_footer">
+
+                <span class="material-icons">chat</span>
+                <span class="material-icons">repeat</span>
+                <span class="material-icons">favorite_border</span>
+                <span class="material-icons">file_upload</span>
+                
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="post">
+        <div class="post_profile-image">
+            <img src="../images/post-image.jpeg" alt="java-logo">
+
+        </div>
+
+        <div class="post_body">
+            <div class="post_header">
+                <div class="post_header-text">
+                    <h3>Java
+                        <span class="header-icon-section">
+                            <span class="material-icons post_badge">verified</span>@java
+                        </span>
+                    </h3>
+                </div>
+
+                <div class="post_header-discription">
+                    <p></p>
+                    <br>
+                    <p>Download now: https://social.ora.cl/6012KoqQ0 <br>
+                        Release notes: https://social.ora.cl/6013KoqQF <br>
+                        API Javadoc: https://social.ora.cl/6015KoqQN <br>
+                        Features: https://social.ora.cl/6016KoqQ4 <br>
+                        </p>
+                        <img src="{% static 'img/profileimg2.png' %}" alt="">
+                </div>
+                
+            </div>
+            <img src="../images/post-image.jpeg" alt="java18">
+
+            <div class="post_footer">
+
+                <span class="material-icons">chat</span>
+                <span class="material-icons">repeat</span>
+                <span class="material-icons">favorite_border</span>
+                <span class="material-icons">file_upload</span>
+                
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="post">
+        <div class="post_profile-image">
+            <img src="../images/page-profile-image.png" alt="java-logo">
+
+        </div>
+
+        <div class="post_body">
+            <div class="post_header">
+                <div class="post_header-text">
+                    <h3>Java
+                        <span class="header-icon-section">
+                            <span class="material-icons post_badge">verified</span>@java
+                        </span>
+                    </h3>
+                </div>
+
+                <div class="post_header-discription">
+                    <p>Java 38 is now available! #Java18 #JDK18 #openjdk </p>
+                    <br>
+                    <p>Download now: https://social.ora.cl/6012KoqQ0 <br>
+                        Release notes: https://social.ora.cl/6013KoqQF <br>
+                        API Javadoc: https://social.ora.cl/6015KoqQN <br>
+                        Features: https://social.ora.cl/6016KoqQ4 <br>
+                        </p>
+                        <img src="{% static 'img/profileimg3.png' %}" alt="">
+
+                </div>
+                
+            </div>
+            <img src="../images/post-image.jpeg" alt="java18">
+
+            <div class="post_footer">
+
+                <span class="material-icons">chat</span>
+                <span class="material-icons">repeat</span>
+                <span class="material-icons">favorite_border</span>
+                <span class="material-icons">file_upload</span>
+                
+
+            </div>
+
+        </div>
+
+    </div>
 
     </main>
     <!-- main section end -->
@@ -153,8 +261,14 @@
     <aside>
 
 
+        <div class="community-search_input">
+            <span class="material-icons aside_search-icon">search</span>
+            <input type="text" placeholder="Search">
+ 
+        </div>
 
         <div class="community-aside_container">
+            
             
             <h2 style="margin-top: 1%"><b>Subscribe to our Newsletter</b></h2>
             <p style="color: #333;margin-bottom: -1px;">Email Address</p>

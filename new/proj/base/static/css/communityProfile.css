@@ -1,31 +1,37 @@
-
+*{
+    font-family: 'Oxygen', sans-serif;
+    
+}
 .community-profile_box1{
     border-bottom: 1px solid #e6ecf0;
+    max-width: 45rem;    
 
 }
 
 .community-profile_box1 form{
     display: flex;
     flex-direction: column;
+    max-width: 45rem;
+
 }
 
 .community-profile_box1 img{
    
 object-fit: contain;
-width: 35rem;
-height: 20rem;
+width: 45rem;
 
 }
 
 
 .community-profile_box2{
    
-    width: 35rem;
-    height:5rem;
+    width: 45rem;
+    height:7rem;
     border-bottom: 1px solid #e6ecf0;
-
-    
-    }
+    display: flex;
+    justify-content: space-between;
+    max-width:45rem;
+}
 
 
 
@@ -33,24 +39,73 @@ height: 20rem;
     
         flex: 0.5; 
         border-right: 1px solid #e6ecf0;
+        width:50%;
         min-width: fit-content;
         overflow-y: scroll;
         -ms-overflow-style: none;
         scrollbar-width: none;
+        margin-right: 2rem;
         
-        margin-right: 8rem;
-    
+    }
+
+   .community-search_input{
+    display: flex;
+    align-items: center;
+    background-color: var(--twitter-background-color);
+    padding: 15px;
+    border-radius: 20px;
+    margin-top: 15px;
+    margin-bottom:20px;
+    width: 20rem;
+
+    }
+
+    .community-search_input input{
+        border: none;
+        background-color: var(--twitter-background-color);
+        outline: none;
+        font-size: 1rem;
+        width: 20rem;
+
     }
 
 
     .community-aside_container{
-        margin-top: 15px;
+        margin-top: 25px;
         margin-bottom:20px;
         padding: 20px;
         background-color:  #f5f8fa;
         border-radius: 20px;
-        width: 25rem;
+        width: 20rem;
+        align-items: center;
+
     }
 
+    .community-name{
+        font-weight: bold;
+        font-size: 20px;
+    }
 
+    .join-btn{
+           
+    width: 8rem;
+    background-color: #19885c;
+    border: none;
+    color: white;
+    font-size: 1rem;
+    border-radius: 30px;
+    height: 40px;
+    cursor: pointer;
+    align-items: center;
+    margin-top:1.6rem;
+    margin-right: 1rem;
+    font-weight: 600;
+
+    
+    }
+.community-name-box{
+    display:flex;
+    flex-direction: column;
+   margin-left:20px;
+}
 
