@@ -152,10 +152,23 @@
     <div style="display:flex; ">
     <img class="profile-change" style="border-radius: 50%;height:10vh;margin:8px;border:2px solid  #19885c;" src="{% static 'img/avatar.png' %}" alt="Uploaded Image">
 
+
+    <div class="upload_file">
+      
     <input type="file" id="file_input2" name="image" >
-    <button onclick="take_input()" name="image" class="edit-image-btn" style="background-color: #19885c;">Edit Image</button> 
-    {% comment %} <button onclick="take_input()" name="image" class="edit-image-btn" style="background-color: #19885c;">Edit Image</button> {% endcomment %}
+    <label class="label-input" for="file_input2">Edit Image</label>
     </div>
+    <!-- <button onclick="take_input()" name="image" class="edit-image-btn" style="background-color: #19885c;">Edit Image</button>  -->
+    <!-- {% comment %} <button onclick="take_input()" name="image" class="edit-image-btn" style="background-color: #19885c;">Edit Image</button> {% endcomment %} -->
+    
+    
+    <!-- <input type="file" id="file_input2" name="image" style="display:none;"/>
+
+    <button onclick="take_input()" class="material-icons">image</button>   -->
+   <!-- <input class="file-upload" type="file" id="file_input2">
+   <label for="file_input2">Upload File</label> -->
+  
+  </div>
   
       <label for="username">Name:</label><br>
       <input type="text" id="username" name="name" ><br>
@@ -166,7 +179,18 @@
 
       <br>
       
-      <button type="submit" class="edit-profile-btn" style="background-color: #19885c;">Save</button>
+      <button type="submit" class="edit-profile-btn" style="background-color: #19885c;
+        width: 34%;
+        background-color: #19885c;
+        border: none;
+        color: white;
+        font-size: 0.9rem;
+        border-radius: 30px;
+        height: 36px;
+        cursor: pointer;
+        margin-top: -0.2rem;
+        align-items: center;
+    ">Save</button>
     </form>  
     
   

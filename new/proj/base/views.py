@@ -194,3 +194,7 @@ def follow(request):
             new_follower=models.FollowerCount.objects.create(follower=follower,user=user)
             new_follower.save()
             return redirect('profile/'+user)
+        
+
+def ebooks(request):
+    return render(request,'ebooks.html')

@@ -16,6 +16,7 @@ urlpatterns = [
     path('profile/<str:pk>',views.profile,name='profile'),
     path('community',views.community,name='community'),
     path('communityProfile',views.communityProfile,name='communityProfile'),
+    path('ebooks',views.ebooks,name='ebooks'),
     path('update',views.update,name='update'),
     path('like',views.Like,name='like'),
     path('follow',views.follow,name='follow'),

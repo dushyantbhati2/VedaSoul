@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="{% static 'css/index.css' %}">
   <title>Ayurvedic Community</title>
-  {% comment %} <link rel="stylesheet" href="<link rel="preconnect" href="https://fonts.googleapis.com"> {% endcomment %}
+  {% comment %} <link rel="stylesheet" href=link rel="preconnect" href="https://fonts.googleapis.com"> {% endcomment %}
   {% comment %} <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Oxygen&display=swap" rel="stylesheet">
 </head> {% endcomment %}
@@ -16,7 +16,7 @@
     <nav>
         <ul>
             <li><a href="#">Home</a></li>
-            <li><a href="#">E-Books</a></li>
+            <li><a href="{% url 'login' %}">E-Books</a></li>
             <li><a href="#">Contact</a></li>
         </ul>
     </nav>

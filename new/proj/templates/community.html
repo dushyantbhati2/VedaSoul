@@ -88,8 +88,11 @@
             <input type="text" placeholder="Search">
  
         </div>
-        <div class="header">
+        <div class="header" style="display: flex;justify-content: space-between;align-items: flex-end;">
             <h2>Discover Communities</h2>
+            <div class="subscribe" >
+              <button onclick="togglediv()" class="subscribe-btn " style="width: 8rem; ">Create Community</button>
+          </div>
         </div>
         
 
@@ -100,6 +103,7 @@
             <div class="widget follow">
               <div class="title">
                 <strong>Who to follow</strong>
+               
               </div>
     
               <ul >
@@ -239,139 +243,39 @@
         </div>
     </div>
         
-      <!--      <div class="follower_container">
-        
-         
-            <aside class="widgets">
-            <div class="widget follow">
-              <div class="title">
-                <strong>Who to follow</strong>
-                <a href="">View all</a>
-              </div>
-    
-              <ul>
-                
-                  <a class="profile" href="">
-                 
-
-                    <div class="post_profile-image">
-
-
-                        <img  src="{% static 'img/avatar.png" alt="Avatar">
-                    </div>
-                    <div class="infollow">
-
-                    <div class="info">
-                      <strong>AyuGuru <div class="username">@AGuru</div></strong>
-                      
-                    </div>
-                    
-                    <button class="follow-btn">Follow</button>
-                    </div>
-                </a>
-
-                <a class="profile" href="">
-                 
-                    <div class="post_profile-image">
-
-                        <img src="{% static 'img/avatar.png" alt="Avatar">
-
-                    </div>
-                    <div class="infollow">
-                    <div class="info">
-                      <strong>AyuGyan <div class="username">@AGyan</div></strong>
-                    </div>
-                    <button class="follow-btn">Follow</button>
-                    </div>
-                </a>
-
-                <a class="profile" href="">
-                 
-
-                    <div class="post_profile-image">
-
-
-                        <img  src="{% static 'img/avatar.png" alt="Avatar">
-                    </div>
-                    <div class="infollow">
-
-                    <div class="info">
-                      <strong>AyuGuru <div class="username">@AGuru</div></strong>
-                      
-                    </div>
-                    <button class="follow-btn">Follow</button>
-                    </div>
-                </a>
-                <a class="profile" href="">
-                 
-
-                    <div class="post_profile-image">
-
-
-                        <img  src="{% static 'img/avatar.png" alt="Avatar">
-                    </div>
-                    <div class="infollow">
-
-                    <div class="info">
-                      <strong>AyuGuru <div class="username">@AGuru</div></strong>
-                      
-                    </div>
-                    <button class="follow-btn">Follow</button>
-                    </div>
-                </a>
-                <a class="profile" href="">
-                 
-
-                    <div class="post_profile-image">
-
-
-                        <img  src="{% static 'img/avatar.png" alt="Avatar">
-                    </div>
-                    <div class="infollow">
-
-                    <div class="info">
-                      <strong>AyuGuru <div class="username">@AGuru</div></strong>
-                      
-                    </div>
-                    <button class="follow-btn">Follow</button>
-                    </div>
-                </a>
-
-                
-     
-              </ul>
-    
-            </div>
-            
-          </aside>
-        </div>
-        -->
-            <!-- <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Save the date, because <a href="https://twitter.com/hashtag/JavaOne?src=hash&amp;ref_src=twsrc%5Etfw">#JavaOne</a> is back! Join the world’s premier <a href="https://twitter.com/hashtag/developer?src=hash&amp;ref_src=twsrc%5Etfw">#developer</a> conference in Las Vegas at <a href="https://twitter.com/Oracle?ref_src=twsrc%5Etfw">@Oracle</a> CloudWorld October 16–20, 2022.<br><br>Subscribe for the latest news about registration, the call for papers, luminary speakers, and more. <a href="https://t.co/hhSf3dMGc1">https://t.co/hhSf3dMGc1</a> <a href="https://t.co/OeDFukcM8K">pic.twitter.com/OeDFukcM8K</a></p>&mdash; Java (@java) <a href="https://twitter.com/java/status/1506310994112483328?ref_src=twsrc%5Etfw">March 22, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> -->
-        
+   
         </div>
         
     </aside>
     
-    <!-- aside element ends
-
-      <div id="hidden-tweet"class="hidden_tweet_box" style="border-radius: 29px;overflow:hidden">
-            <form>
-                <div class="hidden_tweet_box-input">
-                    <div class="hiddenflex">
-                    <img src="{% static 'img/profilePic.jpeg" alt="profile image" style="margin-top: 28px;">
-                    <input class="hidden-main-input" type="text" placeholder="What is happening?">
-                    </div>
-                    <div class="hiddenflex2">
-                        <div class="material-icons"style="margin-left: 69%; margin-top:7%;">image</div>
-                        
-                        <button class="hidden-post-btn">Post</button>
-                </div>
-
-                </div>
-            </form>
+    <!-- hidden-edit-profile -->
+    <form id="edit-profile-form" style=" box-shadow:1px 1px 10px 1px rgba(0,0,0,0.7);border-radius:30px;background-color:white;height: 400px !important" method="POST"  enctype="multipart/form-data" action="{% url 'update' %}">
+      {% csrf_token %}
+      <div style="display:flex;justify-content: space-between;">
+      <img class="cmt-profile-img"  src="{% static 'img/avatar.png' %}" alt="Uploaded Image">
+  
+      <div class="upload_file">
+      
+        <input type="file" id="file_input2" name="image" >
+        <label class="label-input" for="file_input2">Edit Image</label>
+        </div>
+      </div>
     
+        <label for="username">Name:</label><br>
+        <input class="username-input" type="text" id="username" name="name" ><br>
+        
+        <label for="bio" style="width:100%;">Bio:</label><br>
+        <!-- <input  type="text" id="bio" name="bio" placeholder="This is my bio..." style="height: 95px;"><br> -->
+        <textarea class="bio-input" id="bio" name="bio" rows="4" cols="50" placeholder="This is my bio..."></textarea><br>
+  
+        <br>
+        
+        <button type="submit" class="save-profile-btn">Save</button>
+      </form>  
+      
 
-        </div> -->
+
+    <script src="{% static 'js/community.js' %}"></script>
 
 
     
