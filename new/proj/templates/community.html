@@ -249,7 +249,7 @@
     </aside>
     
     <!-- hidden-edit-profile -->
-    <form id="edit-profile-form" style=" box-shadow:1px 1px 10px 1px rgba(0,0,0,0.7);border-radius:30px;background-color:white;height: 400px !important" method="POST"  enctype="multipart/form-data" action="{% url 'update' %}">
+    <form id="edit-profile-form" style=" box-shadow:1px 1px 10px 1px rgba(0,0,0,0.7);border-radius:30px;background-color:white;height: 440px !important" method="POST"  enctype="multipart/form-data" action="{% url 'update' %}">
       {% csrf_token %}
       <div style="display:flex;justify-content: space-between;">
       <img class="cmt-profile-img"  src="{% static 'img/avatar.png' %}" alt="Uploaded Image">
@@ -264,9 +264,9 @@
         <label for="username">Name:</label><br>
         <input class="username-input" type="text" id="username" name="name" ><br>
         
-        <label for="bio" style="width:100%;">Bio:</label><br>
+        <label for="bio" style="width:100% ;">About:</label><br>
         <!-- <input  type="text" id="bio" name="bio" placeholder="This is my bio..." style="height: 95px;"><br> -->
-        <textarea class="bio-input" id="bio" name="bio" rows="4" cols="50" placeholder="This is my bio..."></textarea><br>
+        <textarea class="bio-input" id="bio" name="bio" rows="4" cols="50" placeholder="About your community"></textarea><br>
   
         <br>
         
