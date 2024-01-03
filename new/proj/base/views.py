@@ -3,6 +3,8 @@ from django.contrib.auth.models import User,auth
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from . import models
+from itertools import chain
+import random
 # Create your views here.
 def index(request):
     return render(request,'index.html')
@@ -61,7 +63,31 @@ def home(request):
     user_obj=User.objects.get(username=request.user.username)
     user_profile=models.Profile.objects.get(user=user_obj)
     posts=models.Post.objects.all()
-    return render(request,'home.html',{'posts':posts,'user_profile':user_profile})
+    user_following=models.FollowerCount.objects.filter(follower=request.user.username)
+    
+    all_user=User.objects.all()
+    user_following_all=[]
+    for user in user_following:
+        user_list=User.objects.get(username=user.user)
+        user_following_all.append(user_list)
+    
+    new_suggestion = [x for x in (all_user) if (x not in (user_following_all))]
+    print(new_suggestion)
+    current_user=User.objects.filter(username=request.user.username)
+    final_list=[x for x in (new_suggestion) if (x not in (current_user))]
+    random.shuffle(final_list)
+    print(final_list)
+    username_profile=[]
+    username_profile_list=[]
+    for users in final_list:
+        username_profile.append(users.id)
+    for ids in username_profile:
+        profile_lists=models.Profile.objects.filter(id_user=ids)
+        username_profile_list.append(profile_lists)
+        
+    suggestions_username_profile_list = list(chain(*username_profile_list))
+    print(len(suggestions_username_profile_list))
+    return render(request,'home.html',{'posts':posts,'user_profile':user_profile,'suggestions':suggestions_username_profile_list[:4]})
 
 def profile(request,pk):
     user=pk

@@ -189,92 +189,26 @@
               </div>
     
               <ul>
-                
+                {% for suggestion in suggestions %}
                   <a class="profile" href="">
                  
 
                     <div class="post_profile-image">
 
 
-                        <img  src="{% static 'img/avatar.png' %}" alt="Avatar">
+                    <img  src="{{suggestion.profimag.url}}" alt="Avatar">
                     </div>
                     <div class="infollow">
 
                     <div class="info">
-                      <strong>Modi <div class="username">@namo</div></strong>
+                      <div class="username">{{ suggestion.user }}</div></strong>
                       
                     </div>
-                    <button class="follow-btn">Follow</button>
+                    <button class="follow-btn"><a href="profile/{{suggestion.user}}">View User</button></a>
                     </div>
                 </a>
+                {% endfor %}
 
-                <a class="profile" href="">
-                 
-                    <div class="post_profile-image">
-
-                        <img src="{% static 'img/avatar.png' %}" alt="Avatar">
-
-                    </div>
-                    <div class="infollow">
-                    <div class="info">
-                      <strong>Modi <div class="username">@namo</div></strong>
-                    </div>
-                    <button class="follow-btn">Follow</button>
-                    </div>
-                </a>
-
-                <a class="profile" href="">
-                 
-
-                    <div class="post_profile-image">
-
-
-                        <img  src="{% static 'img/avatar.png' %}" alt="Avatar">
-                    </div>
-                    <div class="infollow">
-
-                    <div class="info">
-                      <strong>Modi <div class="username">@namo</div></strong>
-                      
-                    </div>
-                    <button class="follow-btn">Follow</button>
-                    </div>
-                </a>
-                <a class="profile" href="">
-                 
-
-                    <div class="post_profile-image">
-                        <img  src="{% static 'img/avatar.png' %}" alt="Avatar">
-                    </div>
-                    <div class="infollow">
-
-                    <div class="info">
-                      <strong>Modi<div class="username">@namo</div></strong>
-                      
-                    </div>
-                    <button class="follow-btn">Follow</button>
-                    </div>
-                </a>
-                <a class="profile" href="">
-                 
-
-                    <div class="post_profile-image">
-
-
-                        <img  src="{% static 'img/avatar.png' %}" alt="Avatar">
-                    </div>
-                    <div class="infollow">
-
-                    <div class="info">
-                      <strong>AyGu <div class="username">@AGuru</div></strong>
-                      
-                    </div>
-                    <button class="follow-btn">Follow</button>
-                    </div>
-                </a>
-
-                
-    
               </ul>
     
             </div>
