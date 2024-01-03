@@ -331,10 +331,12 @@ aside{
 
 .profile{
     display:flex;
+    
     text-decoration: none;
     margin-left: -4rem;
     align-items: center;
     margin-top: -1rem;
+    
 }
 
 .info{
@@ -357,9 +359,9 @@ aside{
     border-radius: 30px;
     height: 36px;
     cursor: pointer;
-    margin-top: -0.2rem;
+    margin-top: -3.1rem;
     align-items: center;
-    margin-left:40%;
+    margin-left:50%;
   }
   
 

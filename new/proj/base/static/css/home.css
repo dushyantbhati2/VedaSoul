@@ -371,7 +371,7 @@ aside{
 }
 
 .follow-btn {
-    width: 34%;
+    width: 7rem;
     background-color: #19885c;
     border: none;
     color: white;
@@ -381,7 +381,6 @@ aside{
     cursor: pointer;
     margin-top: -0.2rem;
     align-items: center;
-    margin-left:40%;
   }
   
 

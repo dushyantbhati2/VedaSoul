@@ -20,9 +20,11 @@ function inputmeathod(){
    document.getElementById("file_input1").click();
   
 }
+
 let ht= document.getElementById("heart-icon");
+
 function heart(){
- 
+  console.log(1);
   ht.classList.toggle("fa-solid");
   if (ht.style.color == " #19885c"){
      ht.style.color = "white";

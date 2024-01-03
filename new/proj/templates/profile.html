@@ -22,7 +22,7 @@
       <img class="logo" src="{% static 'img/ayurveda design.png' %}" alt="Logo" style="border-radius: 75%;">
       <div class="side"style="margin-right:-112px;">
           <input type="text" placeholder="Search on Ayu">
-          <img src="{% static 'img/avatar.png' %}" alt="Avatar">
+          <img src="{{user_prof.profimag.url}}" alt="Avatar">
           
       </div>
     </div>
@@ -152,7 +152,7 @@
     <div style="display:flex; ">
     <img class="profile-change" style="border-radius: 50%;height:10vh;margin:8px;border:2px solid  #19885c;" src="{% static 'img/avatar.png' %}" alt="Uploaded Image">
 
-    <input type="file" id="file_input2" name="image" "/>
+    <input type="file" id="file_input2" name="image" >
     <button onclick="take_input()" name="image" class="edit-image-btn" style="background-color: #19885c;">Edit Image</button> 
     {% comment %} <button onclick="take_input()" name="image" class="edit-image-btn" style="background-color: #19885c;">Edit Image</button> {% endcomment %}
     </div>

@@ -30,7 +30,7 @@
         <!-- <div class="nav_logo-wrapper">
             <svg class="nav_logo" viewBox="0 0 24 24" aria-hidden="true" class="r-1cvl2hr r-4qtqp9 r-yyyyoo r-16y2uox r-8kz0gk r-dnmrzs r-bnwqim r-1plcrui r-lrvibr r-lrsllp"><g><path d="M23.643 4.937c-.835.37-1.732.62-2.675.733.962-.576 1.7-1.49 2.048-2.578-.9.534-1.897.922-2.958 1.13-.85-.904-2.06-1.47-3.4-1.47-2.572 0-4.658 2.086-4.658 4.66 0 .364.042.718.12 1.06-3.873-.195-7.304-2.05-9.602-4.868-.4.69-.63 1.49-.63 2.342 0 1.616.823 3.043 2.072 3.878-.764-.025-1.482-.234-2.11-.583v.06c0 2.257 1.605 4.14 3.737 4.568-.392.106-.803.162-1.227.162-.3 0-.593-.028-.877-.082.593 1.85 2.313 3.198 4.352 3.234-1.595 1.25-3.604 1.995-5.786 1.995-.376 0-.747-.022-1.112-.065 2.062 1.323 4.51 2.093 7.14 2.093 8.57 0 13.255-7.098 13.255-13.254 0-.2-.005-.402-.014-.602.91-.658 1.7-1.477 2.323-2.41z"></path></g></svg>
         </div> -->
-        <a href="home.html">
+        <a href="{% url 'home' %}">
         <img class="logo" src="{% static 'img/ayurveda design.png'%}">
        </a>
         <!-- --------------------------------        this is for site logo   ----------------------------------------                          -->
@@ -97,7 +97,7 @@
             <form method="POST" action="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class="tweet_box-input">
-                    <a href="profile/{{post.user}}"><img src="{{user_profile.profimag.url}}" alt="profile image"></a>
+                    <a href="{% url 'profile' user.username %}"><img src="{{user_profile.profimag.url}}" alt="profile image"></a>
                     <input class="main-input" type="text" name="caption" placeholder="What's happening?"/>
                     <div class="Menu_options">
 
@@ -123,7 +123,7 @@
                     <div class="post_header-text">
                         <h3>
                             <span class="header-icon-section">
-                                <span class="material-icons post_badge">verified</span><a href="profile/{{post.user}}"><b>@{{post.user}}</b></a>
+                                <span class="material-icons post_badge">verified</span><a   href="profile/{{post.user}}"><b >@{{post.user}}</b></a>
                             </span>
                         </h3>
                     </div>
@@ -140,10 +140,47 @@
 
                     <span class="material-icons" style="margin-top: 0.1rem;">chat</span>
                     <span class="material-icons" style="margin-right: 1.3rem;margin-top: 0.2rem;">bookmark</span>
-                    <i id ="heart-icon" onclick="heart()" class="fa-regular fa-heart fa-lg" style="color: #19885c;"></i>
-                    <button id="like-button" type="submit"style="margin-right:3.8rem;background-color:white;border:none" ><a href="/like?post_id={{post.id}}">{{post.likes}}                    <span class="material-icons" style="margin-right:3.8rem;">favorite_border</span>
-                    </a></button>    
-
+                    <a href="/like?post_id={{post.id}}" style="text-decoration: none; font-weight: 600;color: black;margin-top: 2px;">
+                        <span id="like-count">{{post.likes}}</span>
+                        <button id="like-button" type="button" style="margin-right: 3.8rem; background-color: white; border: none;">
+                            <i id="heart-icon" onclick="handleLike()" class="fa-regular fa-heart fa-lg" style="color: #19885c;"></i>
+                        </button>
+                    </a>
+                    
+                    <script>
+                    // Function to handle the like/unlike action
+                    function handleLike() {
+                        var icon = document.getElementById('heart-icon');
+                        var likeCount = document.getElementById('like-count');
+                        
+                        // Check if the post is already liked
+                        var isLiked = localStorage.getItem('post_' + '{{post.id}}');
+                        
+                        if (!isLiked) {
+                            icon.style.color = 'red'; // Change the color to red
+                            likeCount.textContent = parseInt(likeCount.textContent) + 1; // Update like count
+                            
+                            // Store liked state in local storage
+                            localStorage.setItem('post_' + '{{post.id}}', true);
+                        } else {
+                            icon.style.color = '#19885c'; // Change the color back to default
+                            likeCount.textContent = parseInt(likeCount.textContent) - 1; // Update like count for unlike
+                            
+                            // Remove liked state from local storage (unlike)
+                            localStorage.removeItem('post_' + '{{post.id}}');
+                        }
+                    }
+                        
+                    // Check if the post was previously liked and update the UI accordingly
+                    window.onload = function() {
+                        var isLiked = localStorage.getItem('post_' + '{{post.id}}');
+                        if (isLiked) {
+                            var icon = document.getElementById('heart-icon');
+                            icon.style.color = 'black'; // Change the color to red if post was previously liked
+                        }
+                    };
+                    </script>
+                    
                 </div>
 
             </div>
@@ -190,7 +227,29 @@
     
               <ul>
                 {% for suggestion in suggestions %}
-                  <a class="profile" href="">
+
+                <a class="profile" href="profile/{{suggestion.user}}">
+                 
+
+                    <div class="post_profile-image">
+
+
+                        <img  src="{{suggestion.profimag.url}}" alt="Avatar">
+                    </div>
+                    <div class="infollow">
+
+                    <div class="info">
+                      <strong>{{ suggestion.user }} <div class="username">{{ suggestion.user }}</div></strong>
+                      
+                    </div>
+                    </div>
+                    <button class="follow-btn" >follow</button>
+                </a>
+                {% endfor %}
+            
+
+                <!-- {% for suggestion in suggestions %} -->
+                  <!-- <a class="profile" href="profile/{{suggestion.user}}">
                  
 
                     <div class="post_profile-image">
@@ -201,13 +260,13 @@
                     <div class="infollow">
 
                     <div class="info">
-                      <div class="username">{{ suggestion.user }}</div></strong>
+                    <strong> <div class="username">{{ suggestion.user }}</div></strong>
                       
-                    </div>
-                    <button class="follow-btn"><a href="profile/{{suggestion.user}}">View User</button></a>
-                    </div>
-                </a>
-                {% endfor %}
+                    </div> -->
+                    
+                    <!-- </div>
+                </a> -->
+                <!-- {% endfor %} -->
 
               </ul>
     
@@ -217,9 +276,7 @@
         
             <!-- <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Save the date, because <a href="https://twitter.com/hashtag/JavaOne?src=hash&amp;ref_src=twsrc%5Etfw">#JavaOne</a> is back! Join the world’s premier <a href="https://twitter.com/hashtag/developer?src=hash&amp;ref_src=twsrc%5Etfw">#developer</a> conference in Las Vegas at <a href="https://twitter.com/Oracle?ref_src=twsrc%5Etfw">@Oracle</a> CloudWorld October 16–20, 2022.<br><br>Subscribe for the latest news about registration, the call for papers, luminary speakers, and more. <a href="https://t.co/hhSf3dMGc1">https://t.co/hhSf3dMGc1</a> <a href="https://t.co/OeDFukcM8K">pic.twitter.com/OeDFukcM8K</a></p>&mdash; Java (@java) <a href="https://twitter.com/java/status/1506310994112483328?ref_src=twsrc%5Etfw">March 22, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> -->
         
-        </div>
-        
-    </aside>
+    
     
     <!-- aside element ends -->
     <div id="hidden-tweet"class="hidden_tweet_box" style="border-radius: 29px;overflow:hidden">
