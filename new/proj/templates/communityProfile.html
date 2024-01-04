@@ -86,18 +86,14 @@
     <main class="community-main">
    
         <div class="header">
-            <h2>Ayu Guru</h2>
+            <h2>{{profile_details.user}}</h2>
         </div>
         
         
 
         <div class="community-profile_box1">
          
-                  <img src="{% static 'img/communityimg2.jpg' %}" alt="profile image">
-    
-              
-          
-
+                  <img src="{{profile_details.profile_imag.url}}" alt="profile image">
       </div>
 
       <div class="community-profile_box2">
@@ -106,6 +102,7 @@
     
         <div class="community-name-box">
               <p class="community-name"style="font-size:1.9rem;margin:0px;margin-top:10px;margin-bottom:10px;">AyuGuru</p>
+              <p class="community-about">{{profile_details.about}}</p>
               <p><b>1.5k </b>members</p>
         </div>
         <div>
@@ -403,13 +400,16 @@
 
     
         <div id="post-box"class="hidden-post-box" style="border-radius: 29px;">
-            <form>
+            <form action="{% url 'community_post' %}" method="POST" enctype="multipart/form-data" >
+            {% csrf_token %}
                 <div class="hidden-post-box-input">
                     <div class="hiddenpostflex">
-                    <img src="{% static 'img/avatar.png' %}" alt="profile image" style="margin-top: 28px;">
-                    <input class="hidden-post-input" style="border:none;width:80%;" type="text" placeholder="What is happening?">
+                    {% comment %} <img src="{{profile_details.profileimag.url}}" alt="profile image" style="margin-top: 28px;"> {% endcomment %}
+                    <input class="hidden-post-input" style="border:none;width:80%;" type="text" name="caption" placeholder="What is happening?">
                     </div>
+                    <input type="file" name="post_image" >
                     <div class="hiddenpostflex2">
+                        
                         <div class="material-icons"style="margin-left: 63%;margin-right:29px; margin-top:10%;">image</div>
                         
                         <button class="hidden-post2-btn">Post</button>

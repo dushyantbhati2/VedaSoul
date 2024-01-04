@@ -147,16 +147,20 @@ def community(request):
 
 
 
-def communityProfile(request,pk):
-    user=pk
-    curr_user=models.CommunityUser.objects.get(username=user)
-    curr_user_prof=models.CommunityProfile.objects.get(user=curr_user)
-    posts=models.CommunityPost.objects.filter(community_user=user)
-    context={
-        'profile_details':curr_user_prof,
-        'posts':posts
-    }
-    return render(request,'communityProfile.html',context)
+# def communityProfile(request,pk):
+#     # user=pk
+#     # curr_user=models.CommunityUser.objects.filter(username=user).first()
+#     # curr_user_prof=models.CommunityProfile.objects.get(user=curr_user).first()
+#     # posts=models.CommunityPost.objects.filter(community_user=user)
+#     user=pk
+#     user_obj=models.CommunityUser.objects.get(username=pk)
+#     user_prof=models.CommunityProfile.objects.get(user=user_obj)
+#     posts=models.Post.objects.filter(user=user_prof)
+#     context={
+#         'profile_details':user_prof,
+#         'posts':posts
+#     }
+#     return render(request,'communityProfile.html',context)
 
 
 def update(request):
@@ -223,7 +227,7 @@ def ebooks(request):
 def search(request):
     user_object = User.objects.get(username=request.user.username)
     user_profile = models.Profile.objects.get(user=user_object)
-
+    posts=models.Post.objects.all()
     if request.method == 'POST':
         username = request.POST['username']
         username_object = User.objects.filter(username__icontains=username)
@@ -239,4 +243,30 @@ def search(request):
             username_profile_list.append(profile_lists)
         
         username_profile_list = list(chain(*username_profile_list))
-    return render(request, 'search.html', {'user_profile': user_profile, 'username_profile_list': username_profile_list})
+    return render(request, 'search.html', {'user_profile': user_profile, 'username_profile_list': username_profile_list,'posts':posts})
+
+
+def communityProfile(request, pk):
+    try:
+        user=pk
+        user_obj = models.CommunityUser.objects.get(username=pk)
+        user_prof = models.CommunityProfile.objects.get(user=user_obj)
+        posts = models.CommunityPost.objects.filter(community_user=user)
+
+
+        context = {
+            'profile_details': user_prof,
+            'posts': posts
+        }
+
+        return render(request, 'communityProfile.html', context)
+    
+    except models.CommunityUser.DoesNotExist:
+        return redirect('community')
+
+    except models.CommunityProfile.DoesNotExist:
+        return redirect('community')
+
+
+def community_post(request):
+    pass

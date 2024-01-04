@@ -21,6 +21,7 @@ urlpatterns = [
     path('like',views.Like,name='like'),
     path('follow',views.follow,name='follow'),
     path('search',views.search,name='search'),
+    path('community_post',views.community_post,name='community_post'),
 
     path('password_reset', auth_views.PasswordResetView.as_view(template_name='password_reset_form.html'), name='password_reset'),
     path('password_reset_done', auth_views.PasswordResetDoneView.as_view(template_name='password_reset_done.html'), name='password_reset_done'),

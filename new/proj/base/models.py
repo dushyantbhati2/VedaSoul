@@ -45,7 +45,7 @@ class FollowerCount(models.Model):
         return self.user
 
 class CommunityUser(models.Model):
-    username=models.CharField(max_length=100)
+    username=models.CharField(max_length=100,unique=True)
     about=models.TextField(max_length=200)
     image=models.ImageField(upload_to="community_profile",default="avatar.png")
     def __str__(self):
