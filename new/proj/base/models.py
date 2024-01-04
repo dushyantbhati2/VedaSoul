@@ -43,3 +43,46 @@ class FollowerCount(models.Model):
     
     def __str__(self):
         return self.user
+
+class CommunityUser(models.Model):
+    username=models.CharField(max_length=100)
+    about=models.TextField(max_length=200)
+    image=models.ImageField(upload_to="community_profile",default="avatar.png")
+    def __str__(self):
+        return self.username
+
+class CommunityProfile(models.Model):
+    user=models.ForeignKey(CommunityUser,on_delete=models.CASCADE)
+    about=models.TextField(max_length=200)
+    community_id_user=models.IntegerField(blank=True,null=True)
+    profile_imag=models.ImageField(upload_to="community_profile",default="avatar.png")
+
+    def __str__(self):
+        return self.user.username
+
+class CommunityPost(models.Model):
+    id=models.UUIDField(primary_key=True,default=uuid.uuid4)
+    community_user=models.CharField(max_length=100)   
+    image=models.ImageField(upload_to="community_post",blank=True)
+    likes=models.IntegerField(default=0)
+    upload_time=models.DateTimeField(default=datetime.now)
+
+    def __str__(self):
+        return self.community_user
+
+
+class CommunityLike(models.Model):
+    community_post_id=models.CharField(max_length=100)
+    username=models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.username
+    
+class CommunityFollow(models.Model):
+    follower=models.CharField(max_length=100)
+    user=models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.user
+
+

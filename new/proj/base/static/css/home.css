@@ -286,7 +286,7 @@ aside{
     display: flex;
     align-items: center;
     background-color: var(--twitter-background-color);
-    padding: 15px;
+    padding: 12px;
     border-radius: 20px;
     margin-top: 15px;
     margin-left: 29px;
@@ -382,7 +382,20 @@ aside{
     margin-top: -0.2rem;
     align-items: center;
   }
-  
+
+  /* .search-btn {
+    width: 6rem;
+    background-color: #19885c;
+    border: none;
+    color: white;
+    font-size: 0.9rem;
+    border-radius: 30px;
+    height: 36px;
+    cursor: pointer;
+    margin-top: -0.2rem;
+    align-items: center;
+  }
+   */
 
 .aside_container h2{
     font-size: 18px;

@@ -70,7 +70,7 @@
 
         <div class="Menu_options">
             <span class="material-icons">book</span>
-            <h2>E-Books</h2>
+            <a style="text-decoration: none;color: black;" href="{% url 'ebooks'%}" ><h2>E-Books</h2></a>
         </div> 
        
 
@@ -107,112 +107,25 @@
               </div>
     
               <ul >
-                
-                  <a class="profile"  href="{% url 'communityProfile'%}" >
+                  {% for users in community_users%}
+                  <a class="profile"  href="{% url 'communityProfile' users.username %}" >
                   
 
                     <div class="cmt_profile-image">
-
-                        <img  src="{% static 'img/profileimg2.png'%}" alt="Avatar">
+                        {% if users.image %}
+                        <img  src="{{users.image.url}}" alt="Avatar">
+                        {% endif %}
                     </div>
                     <div class="cmt-infollow">
 
                     <div class="info">
-                      <strong >AyuGuru <div class="username">1k members</div></strong>
+                      <strong >{{users.username}}<div class="username">1k members</div></strong>
                       
                     </div>
                     
                     </div>
                 </a>
-
-                <a class="profile" href="">
-                 
-                    <div class="cmt_profile-image">
-
-                        <img src="{% static 'img/profileimg3.png'%}" alt="Avatar">
-
-                    </div>
-                    <div class="infollow">
-                    <div class="info">
-                      <strong>AyuGyan <div class="username">10k members</div></strong>
-                    </div>
-                    
-                    </div>
-                </a>
-
-                <a class="profile" href="">
-                 
-
-                    <div class="cmt_profile-image">
-
-
-                        <img  src="{% static 'img/profileimg4.png'%}" alt="Avatar">
-                    </div>
-                    <div class="infollow">
-
-                    <div class="info">
-                      <strong>AyuGuru <div class="username">17k members</div></strong>
-                      
-                    </div>
-                    
-                
-                </div>
-                </a>
-
-                <a class="profile"  href="">
-                 
-
-                    <div class="cmt_profile-image">
-
-                        <img  src="{% static 'img/profileimg2.png'%}" alt="Avatar">
-                    </div>
-                    <div class="cmt-infollow">
-
-                    <div class="info">
-                      <strong >AyuGuru <div class="username">1k members</div></strong>
-                      
-                    </div>
-                    
-                    </div>
-                </a>
-
-                <a class="profile" href="">
-                 
-                    <div class="cmt_profile-image">
-
-                        <img src="{% static 'img/profileimg3.png'%}" alt="Avatar">
-
-                    </div>
-                    <div class="infollow">
-                    <div class="info">
-                      <strong>AyuGyan <div class="username">10k members</div></strong>
-                    </div>
-                    
-                    </div>
-                </a>
-
-                <a class="profile" href="">
-                 
-
-                    <div class="cmt_profile-image">
-
-
-                        <img  src="{% static 'img/profileimg4.png'%}" alt="Avatar">
-                    </div>
-                    <div class="infollow">
-
-                    <div class="info">
-                      <strong>AyuGuru <div class="username">17k members</div></strong>
-                      
-                    </div>
-                    
-                
-                </div>
-                </a>
-                 
-
-                
-    
+              {% endfor %}  
               </ul>
     
             </div>
@@ -249,7 +162,7 @@
     </aside>
     
     <!-- hidden-edit-profile -->
-    <form id="edit-profile-form" style=" box-shadow:1px 1px 10px 1px rgba(0,0,0,0.7);border-radius:30px;background-color:white;height: 440px !important" method="POST"  enctype="multipart/form-data" action="{% url 'update' %}">
+    <form id="edit-profile-form" style=" box-shadow:1px 1px 10px 1px rgba(0,0,0,0.7);border-radius:30px;background-color:white;height: 440px !important;margin-top: 2rem;margin-left:-2rem;" method="POST"  enctype="multipart/form-data" action="">
       {% csrf_token %}
       <div style="display:flex;justify-content: space-between;">
       <img class="cmt-profile-img"  src="{% static 'img/avatar.png' %}" alt="Uploaded Image">
@@ -262,7 +175,7 @@
       </div>
     
         <label for="username">Name:</label><br>
-        <input class="username-input" type="text" id="username" name="name" ><br>
+        <input class="username-input" type="text" id="username" name="username" ><br>
         
         <label for="bio" style="width:100% ;">About:</label><br>
         <!-- <input  type="text" id="bio" name="bio" placeholder="This is my bio..." style="height: 95px;"><br> -->

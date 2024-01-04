@@ -131,12 +131,32 @@ def post(request):
     
 
 def community(request):
-    return render(request,'community.html')
+    if request.method=="POST":
+        username=request.POST['username']
+        bio=request.POST['bio']
+        image=request.FILES.get('image')
+        new_community=models.CommunityUser.objects.create(username=username,about=bio,image=image)
+        new_community.save()
+        new_community_profile=models.CommunityProfile.objects.create(user=new_community,about=bio,profile_imag=image)
+        new_community_profile.save()
+        return redirect('community')
+    
+    community_users=models.CommunityUser.objects.all()
+
+    return render(request,'community.html',{'community_users':community_users})
 
 
 
-def communityProfile(request):
-    return render(request,'communityProfile.html')
+def communityProfile(request,pk):
+    user=pk
+    curr_user=models.CommunityUser.objects.get(username=user)
+    curr_user_prof=models.CommunityProfile.objects.get(user=curr_user)
+    posts=models.CommunityPost.objects.filter(community_user=user)
+    context={
+        'profile_details':curr_user_prof,
+        'posts':posts
+    }
+    return render(request,'communityProfile.html',context)
 
 
 def update(request):
@@ -198,3 +218,25 @@ def follow(request):
 
 def ebooks(request):
     return render(request,'ebooks.html')
+
+
+def search(request):
+    user_object = User.objects.get(username=request.user.username)
+    user_profile = models.Profile.objects.get(user=user_object)
+
+    if request.method == 'POST':
+        username = request.POST['username']
+        username_object = User.objects.filter(username__icontains=username)
+
+        username_profile = []
+        username_profile_list = []
+
+        for users in username_object:
+            username_profile.append(users.id)
+
+        for ids in username_profile:
+            profile_lists = models.Profile.objects.filter(id_user=ids)
+            username_profile_list.append(profile_lists)
+        
+        username_profile_list = list(chain(*username_profile_list))
+    return render(request, 'search.html', {'user_profile': user_profile, 'username_profile_list': username_profile_list})

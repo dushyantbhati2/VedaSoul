@@ -71,11 +71,11 @@
 
         <div class="Menu_options">
             <span style = "font-size: 2rem;"class="material-icons">book</span>
-            <h2>E-Books</h2>
+            <a style="text-decoration: none;color: black;" href="{% url 'ebooks'%}" ><h2>E-Books</h2></a>
         </div> 
        
 
-        <button onclick="togglep()" id ="post-btn"class="tweet_btn">Post</button>
+        <button onclick="togglec()" id ="post-btn"class="tweet_btn">Post</button>
 
 
     </nav>
@@ -105,17 +105,21 @@
 
     
         <div class="community-name-box">
-              <p class="community-name"style="font-size:1.9rem;margin:0px;margin-top:10px;margin-bottom:10px;">React</p>
+              <p class="community-name"style="font-size:1.9rem;margin:0px;margin-top:10px;margin-bottom:10px;">AyuGuru</p>
               <p><b>1.5k </b>members</p>
         </div>
- <button class="join-btn">join</button>
+        <div>
+
+            <button onclick="togglec()" class="post-btn">post</button>
+            <button class="join-btn">join</button>
+        </div>
     </div>
 
 
 
     <div class="post">
         <div class="post_profile-image">
-            <img src="../images/page-profile-image.png" alt="java-logo">
+            <img src="{% static 'img/profileimg2.png' %}" alt="java-logo">
 
         </div>
 
@@ -155,7 +159,7 @@
                 <span class="material-icons">chat</span>
                 <span class="material-icons">repeat</span>
                 <span class="material-icons">favorite_border</span>
-                <span class="material-icons">file_upload</span>
+                
                 
 
             </div>
@@ -199,7 +203,7 @@
                 <span class="material-icons">chat</span>
                 <span class="material-icons">repeat</span>
                 <span class="material-icons">favorite_border</span>
-                <span class="material-icons">file_upload</span>
+                
                 
 
             </div>
@@ -245,7 +249,7 @@
                 <span class="material-icons">chat</span>
                 <span class="material-icons">repeat</span>
                 <span class="material-icons">favorite_border</span>
-                <span class="material-icons">file_upload</span>
+               
                 
 
             </div>
@@ -393,33 +397,32 @@
         -->
             <!-- <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Save the date, because <a href="https://twitter.com/hashtag/JavaOne?src=hash&amp;ref_src=twsrc%5Etfw">#JavaOne</a> is back! Join the world’s premier <a href="https://twitter.com/hashtag/developer?src=hash&amp;ref_src=twsrc%5Etfw">#developer</a> conference in Las Vegas at <a href="https://twitter.com/Oracle?ref_src=twsrc%5Etfw">@Oracle</a> CloudWorld October 16–20, 2022.<br><br>Subscribe for the latest news about registration, the call for papers, luminary speakers, and more. <a href="https://t.co/hhSf3dMGc1">https://t.co/hhSf3dMGc1</a> <a href="https://t.co/OeDFukcM8K">pic.twitter.com/OeDFukcM8K</a></p>&mdash; Java (@java) <a href="https://twitter.com/java/status/1506310994112483328?ref_src=twsrc%5Etfw">March 22, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> -->
         
-        </div>
+        
         
     </aside>
+
     
-    <!-- aside element ends
-
-      <div id="hidden-tweet"class="hidden_tweet_box" style="border-radius: 29px;overflow:hidden">
+        <div id="post-box"class="hidden-post-box" style="border-radius: 29px;">
             <form>
-                <div class="hidden_tweet_box-input">
-                    <div class="hiddenflex">
-                    <img src="{% static 'img/profilePic.jpeg" alt="profile image" style="margin-top: 28px;">
-                    <input class="hidden-main-input" type="text" placeholder="What is happening?">
+                <div class="hidden-post-box-input">
+                    <div class="hiddenpostflex">
+                    <img src="{% static 'img/avatar.png' %}" alt="profile image" style="margin-top: 28px;">
+                    <input class="hidden-post-input" style="border:none;width:80%;" type="text" placeholder="What is happening?">
                     </div>
-                    <div class="hiddenflex2">
-                        <div class="material-icons"style="margin-left: 69%; margin-top:7%;">image</div>
+                    <div class="hiddenpostflex2">
+                        <div class="material-icons"style="margin-left: 63%;margin-right:29px; margin-top:10%;">image</div>
                         
-                        <button class="hidden-post-btn">Post</button>
+                        <button class="hidden-post2-btn">Post</button>
                 </div>
-
+    
                 </div>
             </form>
     
+    
+        </div>
+    
 
-        </div> -->
-
-
-        <script src="{% static 'js/home.js' %}"></script>
+        <script src="{% static 'js/communityProfile.js' %}"></script>
 
 
 

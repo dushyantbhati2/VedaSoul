@@ -193,11 +193,23 @@
     <!-- aside element start -->
     <aside>
 
-        <div class="aside_input">
+        <form action="{% url 'search' %}" method="POST" class="aside_input">
+            {% csrf_token %}
             <span class="material-icons aside_search-icon">search</span>
-            <input type="text" placeholder="Search">
+            <input type="text" name="username" placeholder="Search">
+            <button class="search-btn" 
+            style=" width: 6rem;
+            background-color: #19885c;
+            border: none;
+            color: white;
+            font-size: 0.9rem;
+            border-radius: 30px;
+            height: 36px;
+            cursor: pointer;
+            margin-top: -0.2rem;
+            align-items: center;" >Search</button>
  
-        </div>
+        </form>
 
         <div class="aside_container">
             
