@@ -404,13 +404,14 @@
             {% csrf_token %}
                 <div class="hidden-post-box-input">
                     <div class="hiddenpostflex">
-                    {% comment %} <img src="{{profile_details.profileimag.url}}" alt="profile image" style="margin-top: 28px;"> {% endcomment %}
+                     <img src="{{profile_details.profile_imag.url}}" alt="profile image" style="margin-top: 28px;"> 
                     <input class="hidden-post-input" style="border:none;width:80%;" type="text" name="caption" placeholder="What is happening?">
                     </div>
-                    <input type="file" name="post_image" >
+                    
                     <div class="hiddenpostflex2">
+                        <input type="file" id="file_input3" name="image" >
+                        <label class="label-input" for="file_input3">Img</label>
                         
-                        <div class="material-icons"style="margin-left: 63%;margin-right:29px; margin-top:10%;">image</div>
                         
                         <button class="hidden-post2-btn">Post</button>
                 </div>
