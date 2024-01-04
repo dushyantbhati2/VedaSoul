@@ -86,6 +86,10 @@ width: 45rem;
         font-size: 20px;
     }
 
+    .community-about{
+        margin-top: auto;
+        margin-left:1rem ;
+    }
     .join-btn{
            
     width: 8rem;

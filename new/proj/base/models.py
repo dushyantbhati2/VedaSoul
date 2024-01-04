@@ -66,7 +66,7 @@ class CommunityPost(models.Model):
     image=models.ImageField(upload_to="community_post",blank=True)
     likes=models.IntegerField(default=0)
     upload_time=models.DateTimeField(default=datetime.now)
-
+    caption=models.TextField(max_length=200,blank=True)
     def __str__(self):
         return self.community_user
 

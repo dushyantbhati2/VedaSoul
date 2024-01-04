@@ -103,7 +103,7 @@
         <div class="community-name-box">
               <p class="community-name"style="font-size:1.9rem;margin:0px;margin-top:10px;margin-bottom:10px;">AyuGuru</p>
               <p class="community-about">{{profile_details.about}}</p>
-              <p><b>1.5k </b>members</p>
+              <p class="community-about-ab" style="margin-bottom:1.5rem;">1.5k members</p>
         </div>
         <div>
 
@@ -113,49 +113,38 @@
     </div>
 
 
-
+    {% for post in posts reversed %}
     <div class="post">
         <div class="post_profile-image">
-            <img src="{% static 'img/profileimg2.png' %}" alt="java-logo">
+            <img src="{{profile_details.profile_imag.url}}" alt="java-logo">
 
         </div>
 
         <div class="post_body">
             <div class="post_header">
                 <div class="post_header-text">
-                    <h3 style="font-size: 1.3rem;margin-top:1px;"> sanatan_prabhat
+                    <h3 style="font-size: 1.3rem;margin-top:1px;"> {{post.community_user}}
                         <span class="header-icon-section">
-                            <span class="material-icons post_badge">verified</span>@sanatan_prabhat
+                            <span class="material-icons post_badge">verified</span>@{{post.community_user}}
                         </span>
                     </h3>
                 </div>
 
                 <div class="post_header-discription"style="max-width:30rem;">
-                    <p>Ayurveda's wisdom: Understanding disease stages, emphasizing prevention & root cause awareness.
-
-                        Early recognition in the incubation phase is key to stopping disease progression. 
-                        
-                        Special Article on #Ayurveda for a healthy life :
-                        https://sanatanprabhat.org/english/89632.html
-                        
-                        To read previous articles on Ayurveda :
-                        <a href="http://bit.ly/3rwWQut">http://bit.ly/3rwWQut</a>
-                        
-                        </p>
+                    <p>{{post.caption}}</p>
                     <br>
-                 
-                        <img src="https://pbs.twimg.com/media/GChKT74aEAE_1EZ?format=png&name=small" alt="">
 
                 </div>
                 
             </div>
-            <img src="../images/post-image.jpeg" alt="java18">
-
+            {% if post.image %}
+            <img src="{{post.image.url}}" alt="java18">
+            {% endif %}
             <div class="post_footer">
 
                 <span class="material-icons">chat</span>
                 <span class="material-icons">repeat</span>
-                <span class="material-icons">favorite_border</span>
+                <a href="/community_like?post_id={{post.id}}">{{post.likes}}<span class="material-icons">like</span></a>
                 
                 
 
@@ -163,98 +152,8 @@
 
         </div>
 
-    </div>
-
-    <div class="post">
-        <div class="post_profile-image">
-            <img src="../images/post-image.jpeg" alt="java-logo">
-
-        </div>
-
-        <div class="post_body">
-            <div class="post_header">
-                <div class="post_header-text">
-                    <h3>Java
-                        <span class="header-icon-section">
-                            <span class="material-icons post_badge">verified</span>@java
-                        </span>
-                    </h3>
-                </div>
-
-                <div class="post_header-discription">
-                    <p></p>
-                    <br>
-                    <p>Download now: https://social.ora.cl/6012KoqQ0 <br>
-                        Release notes: https://social.ora.cl/6013KoqQF <br>
-                        API Javadoc: https://social.ora.cl/6015KoqQN <br>
-                        Features: https://social.ora.cl/6016KoqQ4 <br>
-                        </p>
-                        <img src="{% static 'img/profileimg2.png' %}" alt="">
-                </div>
-                
-            </div>
-            <img src="../images/post-image.jpeg" alt="java18">
-
-            <div class="post_footer">
-
-                <span class="material-icons">chat</span>
-                <span class="material-icons">repeat</span>
-                <span class="material-icons">favorite_border</span>
-                
-                
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <div class="post">
-        <div class="post_profile-image">
-            <img src="../images/page-profile-image.png" alt="java-logo">
-
-        </div>
-
-        <div class="post_body">
-            <div class="post_header">
-                <div class="post_header-text">
-                    <h3>Java
-                        <span class="header-icon-section">
-                            <span class="material-icons post_badge">verified</span>@java
-                        </span>
-                    </h3>
-                </div>
-
-                <div class="post_header-discription">
-                    <p>Java 38 is now available! #Java18 #JDK18 #openjdk </p>
-                    <br>
-                    <p>Download now: https://social.ora.cl/6012KoqQ0 <br>
-                        Release notes: https://social.ora.cl/6013KoqQF <br>
-                        API Javadoc: https://social.ora.cl/6015KoqQN <br>
-                        Features: https://social.ora.cl/6016KoqQ4 <br>
-                        </p>
-                        <img src="{% static 'img/profileimg3.png' %}" alt="">
-
-                </div>
-                
-            </div>
-            <img src="../images/post-image.jpeg" alt="java18">
-
-            <div class="post_footer">
-
-                <span class="material-icons">chat</span>
-                <span class="material-icons">repeat</span>
-                <span class="material-icons">favorite_border</span>
-               
-                
-
-            </div>
-
-        </div>
-
-    </div>
-
+    </div>    
+    {% endfor %}
     </main>
     <!-- main section end -->
 
@@ -400,7 +299,7 @@
 
     
         <div id="post-box"class="hidden-post-box" style="border-radius: 29px;">
-            <form action="{% url 'community_post' %}" method="POST" enctype="multipart/form-data" >
+            <form action="" method="POST" enctype="multipart/form-data" >
             {% csrf_token %}
                 <div class="hidden-post-box-input">
                     <div class="hiddenpostflex">
@@ -413,7 +312,7 @@
                         <label class="label-input" for="file_input3">Img</label>
                         
                         
-                        <button class="hidden-post2-btn">Post</button>
+                        <button type="submit" class="hidden-post2-btn">Post</button>
                 </div>
     
                 </div>

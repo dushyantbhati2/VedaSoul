@@ -252,8 +252,12 @@ def communityProfile(request, pk):
         user_obj = models.CommunityUser.objects.get(username=pk)
         user_prof = models.CommunityProfile.objects.get(user=user_obj)
         posts = models.CommunityPost.objects.filter(community_user=user)
-
-
+        if request.method=="POST":
+            image=request.FILES.get('image')
+            caption=request.POST['caption']
+            new_post=models.CommunityPost.objects.create(community_user=user,image=image,caption=caption)
+            new_post.save()
+            
         context = {
             'profile_details': user_prof,
             'posts': posts
@@ -268,5 +272,35 @@ def communityProfile(request, pk):
         return redirect('community')
 
 
-def community_post(request):
-    pass
+def community_like(request):
+    username=request.user.username
+    post_id=request.GET.get('post_id')
+    post=models.CommunityPost.objects.get(id=post_id)
+    curr_user=post.community_user
+    like=models.CommunityLike.objects.filter(community_post_id=post_id,username=username).first()
+
+    if like==None:
+        new_like=models.CommunityLike.objects.create(community_post_id=post_id,username=username)
+        new_like.save()
+        post.likes=post.likes+1
+        post.save()
+        return redirect('communityProfile/'+curr_user)
+    else:
+        like.delete()
+        post.likes=post.likes-1
+        post.save()
+        return redirect('communityProfile/'+curr_user)
+    
+    
+def community_join(request):
+    if request.method=="POST":
+        follower=request.POST['follower']
+        user=request.POST['user']
+        if models.CommunityFollow.objects.filter(follower=follower,user=user).first():
+            delete_follower=models.CommunityFollow.objects.get(follower=follower,user=user)
+            delete_follower.delete()
+            return redirect('profile/'+user)
+        else:
+            new_follower=models.CommunityFollow.objects.create(follower=follower,user=user)
+            new_follower.save()
+            return redirect('profile/'+user)
