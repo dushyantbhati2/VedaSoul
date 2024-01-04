@@ -118,7 +118,6 @@ li {
     background-color: #04AA6D;
   }
 
-/* section-3 image gallery 2 */
 
   .section-3{
       padding:35px;
@@ -147,69 +146,3 @@ li {
     align-items: center;
   }
 
-
-  /* section-4 brands */
-  /* .section-4{
-    padding:35px;
-  }
-  
-  .brand{
-      width: 20%;
-      display: inline;
-  }
-
-  .brand img{
-      height: 175px;
-  } */
-
-/* section-5 contact us */
-/* .section-5
-{
-    background-color: rgb(224, 219, 219);
-    display: grid; 
-}
-
-input[type=text], select, textarea {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    margin-top: 6px;
-    margin-bottom: 16px;
-    resize: vertical;
-  }
-  
-  input[type=submit] {
-    background-color: #04AA6D;
-    color: white;
-    padding: 12px 20px;
-    border: none;
-    cursor: pointer;
-  }
-  
-  input[type=submit]:hover {
-    background-color: #45a049;
-  }
-  
-  
-  .container {
-    border-radius: 5px;
-    background-color:black;
-    padding: 10px;
-  }
-  
-  
-  .column {
-    float: left;
-    width: 50%;
-    margin-top: 6px;
-    padding: 20px;
-  }
-  
-  
-  .row:after {
-    content: "";
-    display: table;
-    clear: both;
-  }
- 
- */

@@ -31,15 +31,6 @@
     margin-bottom: 2rem;
 }
 
-/* .title a{
-    text-decoration: none;
-    color: black;
-    margin-left: 1.5rem;
-    font-weight: 600;
-    
-    
-  } */
-
 .profile {
     display: flex;
     text-decoration: none;
@@ -120,23 +111,6 @@
     top: 22%;
     left: 40%;
 }
-
-/* .edit-image-btn {
-    text-align: center;
-    font-size: 13px;
-    text-shadow: #1F2226;
-    background-color: #19885c;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    border-radius: 20px;
-    width: 85px;
-    height: 40px;
-    font-weight: 600;
-    margin-left: 160px;
-    margin-top: 12%;
-} */
 
 
 .save-profile-btn {

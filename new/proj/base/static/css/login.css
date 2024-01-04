@@ -119,13 +119,7 @@ button:hover{
 
 }
 
-/* .error{
-    color:#dc0f0fed;
-    background: white;
-    display: block;
-   font-size: 0.8rem;
-   text-align: right;
-} */
+
 .login_below{
     background-color: white;
     display: flex;
