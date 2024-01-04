@@ -101,17 +101,41 @@ def profile(request,pk):
         button='follow'
 
     user_followers=len(models.FollowerCount.objects.filter(user=user))
-    user_following=len(models.FollowerCount.objects.filter(follower=pk))
+    user_following_length=len(models.FollowerCount.objects.filter(follower=pk))
     length=len(posts)
+    user_following=models.FollowerCount.objects.filter(follower=pk)
+    
 
+    all_user=User.objects.all()
+    user_following_all=[]
+    for user in user_following:
+        user_list=User.objects.get(username=user.user)
+        user_following_all.append(user_list)
+    
+    new_suggestion = [x for x in (all_user) if (x not in (user_following_all))]
+    print(new_suggestion)
+    current_user=User.objects.filter(username=request.user.username)
+    final_list=[x for x in (new_suggestion) if (x not in (current_user))]
+    random.shuffle(final_list)
+    print(final_list)
+    username_profile=[]
+    username_profile_list=[]
+    for users in final_list:
+        username_profile.append(users.id)
+    for ids in username_profile:
+        profile_lists=models.Profile.objects.filter(id_user=ids)
+        username_profile_list.append(profile_lists)
+        
+    suggestions_username_profile_list = list(chain(*username_profile_list))
     context={
         'user_obj':user_obj,
         'user_prof':user_prof,
         'posts':posts,
         'button':button,
-        'user_following':user_following,
+        'user_following':user_following_length,
         'user_followers':user_followers,
-        'length':length
+        'length':length,
+        'suggestions':suggestions_username_profile_list[:4]
     }
     return render(request,'profile.html',context)
 @login_required(login_url='login')
@@ -224,6 +248,34 @@ def ebooks(request):
     return render(request,'ebooks.html')
 
 
+def bookmarks(request):
+
+    user_following=models.FollowerCount.objects.filter(follower=request.user.username)
+    all_user=User.objects.all()
+    user_following_all=[]
+    for user in user_following:
+        user_list=User.objects.get(username=user.user)
+        user_following_all.append(user_list)
+    
+    new_suggestion = [x for x in (all_user) if (x not in (user_following_all))]
+    print(new_suggestion)
+    current_user=User.objects.filter(username=request.user.username)
+    final_list=[x for x in (new_suggestion) if (x not in (current_user))]
+    random.shuffle(final_list)
+    print(final_list)
+    username_profile=[]
+    username_profile_list=[]
+    for users in final_list:
+        username_profile.append(users.id)
+    for ids in username_profile:
+        profile_lists=models.Profile.objects.filter(id_user=ids)
+        username_profile_list.append(profile_lists)
+        
+    suggestions_username_profile_list = list(chain(*username_profile_list))
+    return render(request,'bookmarks.html',{'suggestions':suggestions_username_profile_list})
+
+
+
 def search(request):
     user_object = User.objects.get(username=request.user.username)
     user_profile = models.Profile.objects.get(user=user_object)
@@ -249,9 +301,19 @@ def search(request):
 def communityProfile(request, pk):
     try:
         user=pk
-        user_obj = models.CommunityUser.objects.get(username=pk)
+        user_obj = models.CommunityUser.objects.get(username=user)
         user_prof = models.CommunityProfile.objects.get(user=user_obj)
         posts = models.CommunityPost.objects.filter(community_user=user)
+        follower=request.user.username
+        if models.CommunityFollow.objects.filter(follower=follower,user=user).exists():
+            can_post=True
+            button='Leave'
+        else:
+            button='Join'
+            can_post=False
+
+        user_followers=len(models.CommunityFollow.objects.filter(user=user))
+        # user_following=len(models.CommunityFollow.objects.filter(follower=pk))
         if request.method=="POST":
             image=request.FILES.get('image')
             caption=request.POST['caption']
@@ -260,7 +322,10 @@ def communityProfile(request, pk):
             
         context = {
             'profile_details': user_prof,
-            'posts': posts
+            'posts': posts,
+            'user_followers':user_followers,
+            'button':button,
+            'can_post':can_post
         }
 
         return render(request, 'communityProfile.html', context)
@@ -299,8 +364,21 @@ def community_join(request):
         if models.CommunityFollow.objects.filter(follower=follower,user=user).first():
             delete_follower=models.CommunityFollow.objects.get(follower=follower,user=user)
             delete_follower.delete()
-            return redirect('profile/'+user)
+            return redirect('communityProfile/'+user)
         else:
             new_follower=models.CommunityFollow.objects.create(follower=follower,user=user)
             new_follower.save()
-            return redirect('profile/'+user)
+            return redirect('communityProfile/'+user)
+
+
+def save(request):
+    if request.method=="POST":
+        post_user=request.POST['post_user']
+        curr_user=request.user.username
+        save_post=models.Post.objects.get(user=post_user)
+        caption=save_post.caption
+        image=save_post.image
+        likes=save_post.likes
+        save_post_new=models.SavePost.objects.create(curr_user=curr_user,post_user=post_user,caption=caption,image=image,likes=likes)
+        save_post_new.save()
+        return redirect('home')

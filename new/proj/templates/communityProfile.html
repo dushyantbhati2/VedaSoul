@@ -23,6 +23,22 @@
       <link rel="preconnect" href="https://fonts.googleapis.com">
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
       <link href="https://fonts.googleapis.com/css2?family=Oxygen&display=swap" rel="stylesheet">
+      <script>
+        // Function to toggle the button text
+        function toggleSubscribe() {
+            var subscribeButton = document.getElementById('subscribeBtn');
+    
+            if (subscribeButton.textContent === 'Subscribe') {
+                subscribeButton.textContent = 'Subscribed';
+                // Additional functionality can be added for the subscribed state
+            } else {
+                subscribeButton.textContent = 'Subscribe';
+                // Additional functionality can be added for the subscribe state
+            }
+        }
+    </script>
+    
+    
       
 </head>
 <body>
@@ -101,14 +117,24 @@
 
     
         <div class="community-name-box">
-              <p class="community-name"style="font-size:1.9rem;margin:0px;margin-top:10px;margin-bottom:10px;">AyuGuru</p>
-              <p class="community-about">{{profile_details.about}}</p>
-              <p class="community-about-ab" style="margin-bottom:1.5rem;">1.5k members</p>
-        </div>
-        <div>
-
+              <p class="community-name"style="font-size:1.9rem;margin:0px;margin-top:10px;margin-bottom:10px;">{{profile_details.user}}</p>
+              
+              
+              <div style="margin-top: -1.5rem;width: 75%; "><p class="community-about" style="width: 100%;" >{{profile_details.about}}</p>
+              <p class="community-about-ab" style="font-weight: bold;">{{user_followers}} Members</p>
+        
+            </div>
+            </div>
+        <div class="join-commu" style="display: grid;">
+            {% if can_post %}
             <button onclick="togglec()" class="post-btn">post</button>
-            <button class="join-btn">join</button>
+            {% endif %}
+            <form action="{% url 'community_join' %}" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="follower" value="{{user.username}}">
+            <input type="hidden" name="user" value="{{profile_details.user}}">
+            <button type="submit" name="leave" class="potbtn">{{button}}</button>
+            </form>
         </div>
     </div>
 
@@ -143,9 +169,51 @@
             <div class="post_footer">
 
                 <span class="material-icons">chat</span>
-                <span class="material-icons">repeat</span>
-                <a href="/community_like?post_id={{post.id}}">{{post.likes}}<span class="material-icons">like</span></a>
+                <span class="material-icons">bookmark</span>
                 
+                <a href="/community_like?post_id={{post.id}}" style="display: flex; text-decoration: none; font-weight: 600;color: black;margin-right: 6rem;">
+                    <span id="like-count">{{post.likes}}</span>
+                    <button id="like-button" type="button" style="margin-right: 3.8rem; background-color: white; border: none;">
+                        
+                    
+                        <span style="margin-bottom: 2px;" class="material-icons" onclick="handleLike()">favorite_border</span>
+                    </button>
+                </a>
+                
+                <script>
+                // Function to handle the like/unlike action
+                function handleLike() {
+                    var icon = document.getElementById('heart-icon');
+                    var likeCount = document.getElementById('like-count');
+                    
+                    // Check if the post is already liked
+                    var isLiked = localStorage.getItem('post_' + '{{post.id}}');
+                    
+                    if (!isLiked) {
+                        icon.style.color = 'red'; // Change the color to red
+                        likeCount.textContent = parseInt(likeCount.textContent) + 1; // Update like count
+                        
+                        // Store liked state in local storage
+                        localStorage.setItem('post_' + '{{post.id}}', true);
+                    } else {
+                        icon.style.color = '#19885c'; // Change the color back to default
+                        likeCount.textContent = parseInt(likeCount.textContent) - 1; // Update like count for unlike
+                        
+                        // Remove liked state from local storage (unlike)
+                        localStorage.removeItem('post_' + '{{post.id}}');
+                    }
+                }
+                    
+                // Check if the post was previously liked and update the UI accordingly
+                window.onload = function() {
+                    var isLiked = localStorage.getItem('post_' + '{{post.id}}');
+                    if (isLiked) {
+                        var icon = document.getElementById('heart-icon');
+                        icon.style.color = 'black'; // Change the color to red if post was previously liked
+                    }
+                };
+                </script>
+              
                 
 
             </div>
@@ -180,7 +248,9 @@
         </div>
 
         <div class="subscribe">
-            <button class="subscribe-btn">Subscribe</button>
+            <button id="subscribeBtn" class="subscribe-btn" onclick="toggleSubscribe()">Subscribe</button>
+           
+            
         </div>
     </div>
         
@@ -304,15 +374,20 @@
                 <div class="hidden-post-box-input">
                     <div class="hiddenpostflex">
                      <img src="{{profile_details.profile_imag.url}}" alt="profile image" style="margin-top: 28px;"> 
-                    <input class="hidden-post-input" style="border:none;width:80%;" type="text" name="caption" placeholder="What is happening?">
+                    <input class="hidden-post-input" 
+                    style="border:none;width:80%; 
+                           outline: none;
+                           font-size: 1.3rem;" 
+                    type="text" name="caption" placeholder="What is happening?">
                     </div>
                     
-                    <div class="hiddenpostflex2">
+                    <div class="hiddenpostflex2" style="display: flex;align-items:flex-end;justify-content:right;">
                         <input type="file" id="file_input3" name="image" >
-                        <label class="label-input" for="file_input3">Img</label>
+                        <label class="label-input" for="file_input3" style="width:70%;border: #333;text-align:left;border-radius:10%">                    <div class="material-icons">image</div>
+                        </label>
                         
                         
-                        <button type="submit" class="hidden-post2-btn">Post</button>
+                        <button type="submit" class="hidden-post2-btn" style="margin-right: 1.0rem;">Post</button>
                 </div>
     
                 </div>

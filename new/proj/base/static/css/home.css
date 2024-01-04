@@ -309,6 +309,7 @@ aside{
     border: none;
     background-color: var(--twitter-background-color);
     outline: none;
+
 }
 
 .email_input input{
