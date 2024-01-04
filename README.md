@@ -1,1 +1,1 @@
-# ayurvedic
+# VedaSoul
