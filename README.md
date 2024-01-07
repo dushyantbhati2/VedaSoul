@@ -20,6 +20,8 @@ git clone  https://github.com/dushyantbhati2/VedaSoul.git
 
 
 3. Initiate the server by executing the command "python manage.py runserver" to start the server for the project.
+## DEMO
+-> https://www.youtube.com/watch?v=PJISPlYIs2c
 ## Authors
 
 - [@dushyantbhati]https://github.com/dushyantbhati2
