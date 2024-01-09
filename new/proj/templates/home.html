@@ -142,9 +142,10 @@
                 <div class="post_footer">
 
                     <span class="material-icons" style="margin-top: 0.1rem;">chat</span>
-                    <form action="{% url 'save'%}" method="POST" enctype="multipart/form-data">
+                    <form action="/save?post_id={{post.id}}" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
                     <input type="hidden" name="post_user" value={{post.user}}>
-                    <button type="submit" class="material-icons" style="margin-right: 1.3rem;margin-top: 0.2rem;border:none;background-color: white">bookmark</button>
+                    <button type="submit" class="material-icons" style="margin-right: 1.3rem;margin-top: 0.2rem;border:none;background-color: white; cursor: pointer;">bookmark</button>
                     </form>
                     <a href="/like?post_id={{post.id}}" style="text-decoration: none; font-weight: 600;color: black;margin-top: 2px;;">
                         <span id="like-count">{{post.likes}}</span>

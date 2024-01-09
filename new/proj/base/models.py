@@ -33,9 +33,7 @@ class Post(models.Model):
 class SavePost(models.Model):
     curr_user=models.CharField(max_length=100)
     post_user=models.CharField(max_length=100)
-    image=models.ImageField(upload_to="Saved_Post",blank=True)
-    caption=models.CharField(max_length=100)
-    likes=models.IntegerField()
+    post=models.ForeignKey(Post,on_delete=models.CASCADE,null=True)
 
     def __str__(self):
         return self.curr_user
@@ -73,7 +71,7 @@ class CommunityProfile(models.Model):
 class CommunityPost(models.Model):
     id=models.UUIDField(primary_key=True,default=uuid.uuid4)
     community_user=models.CharField(max_length=100)
-    curr_user=models.ForeignKey(User,on_delete=models.CASCADE,null=True)
+    curr_user=models.ForeignKey(Profile,on_delete=models.CASCADE,null=True)
     image=models.ImageField(upload_to="community_post",blank=True)
     likes=models.IntegerField(default=0)
     upload_time=models.DateTimeField(default=datetime.now)

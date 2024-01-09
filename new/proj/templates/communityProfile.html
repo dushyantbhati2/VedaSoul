@@ -140,16 +140,16 @@
     {% for post in posts reversed %}
     <div class="post">
         <div class="post_profile-image">
-            <img src="{{profile_details.profile_imag.url}}" alt="java-logo">
+            <img src="{{post.curr_user.profimag.url}}" alt="java-logo">
 
         </div>
 
         <div class="post_body">
             <div class="post_header">
                 <div class="post_header-text">
-                    <h3 style="font-size: 1.3rem;margin-top:1px;"> {{post.community_user}}
+                    <h3 style="font-size: 1.3rem;margin-top:1px;"> {{post.curr_user.name}}
                         <span class="header-icon-section">
-                            <span class="material-icons post_badge">verified</span>@{{post.community_user}}
+                            <span class="material-icons post_badge">verified</span>@{{post.curr_user.user}}
                         </span>
                     </h3>
                 </div>
@@ -263,7 +263,7 @@
             {% csrf_token %}
                 <div class="hidden-post-box-input">
                     <div class="hiddenpostflex">
-                     <img src="{{profile_details.profile_imag.url}}" alt="profile image" style="margin-top: 28px;"> 
+                     <img src="{{prof.profimag.url}}" alt="profile image" style="margin-top: 28px;"> 
                     <input class="hidden-post-input" 
                     style="border:none;width:80%; 
                            outline: none;

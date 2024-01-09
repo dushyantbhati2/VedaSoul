@@ -52,7 +52,7 @@
        
         <div class="Menu_options active">
             <span style = "font-size: 2rem;"class="material-icons">home</span>
-            <h2>Home</h2>
+            <a style="text-decoration: none;color: black;" href="{% url 'home' %}" ><h2>Home</h2></a>
         </div>
 
         <div class="Menu_options">
@@ -100,10 +100,10 @@
             
 
         </div>
-        {% for post in posts reversed %}
+        {% for posts in save_post reversed %}
         <div class="post"style="width:700px;">
             <div class="post_profile-image">
-               <a href="profile/{{post.user}}"><img src="{{post.user_profile.profimag.url}}" alt="img">
+               <a href="profile/{{posts.post_user}}"><img src="{{posts.post.user_profile.profimag.url}}" alt="img">
                </a> 
             </div>
 
@@ -112,25 +112,30 @@
                     <div class="post_header-text">
                         <h3>
                             <span class="header-icon-section">
-                                <span class="material-icons post_badge">verified</span><a   href="profile/{{post.user}}"><b >@{{post.user}}</b></a>
+                                <span class="material-icons post_badge">verified</span><a   href="profile/{{posts.post_user}}"><b >@{{posts.post_user}}</b></a>
                             </span>
                         </h3>
                     </div>
 
                     <div class="post_header-discription">
-                        <p>{{post.caption}}<p>
+                        <p>{{posts.post.caption}}<p>
                     </div>
                     
                 </div>
-                {% if post.image %}
-                <img src="{{post.image.url}}" alt="java18">
+                {% if posts.post.image %}
+                <img src="{{posts.post.image.url}}" alt="java18">
                 {% endif %}
                 <div class="post_footer">
 
                     <span class="material-icons" style="margin-top: 0.1rem;">chat</span>
-                    <button class="material-icons" style="margin-right: 1.3rem;margin-top: 0.2rem;">bookmark</span>
-                    <a href="/like?post_id={{post.id}}" style="text-decoration: none; font-weight: 600;color: black;margin-top: 2px;">
-                        <span id="like-count">{{post.likes}}</span>
+                    <form action="" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <input type="hidden" name="post_id" value="{{posts.post.id}}">
+                    <input type="hidden" name="post_user" value="{{posts.post_user}}">
+                    <button type="submit" class="material-icons" style="margin-right: 1.3rem;margin-top: 0.2rem;border:none;background-color: white; cursor: pointer;">bookmark</button>
+                    </form>
+                    <a href="/like?post_id={{posts.post.id}}" style="text-decoration: none; font-weight: 600;color: black;margin-top: 2px;">
+                        <span id="like-count">{{posts.post.likes}}</span>
                         <button id="like-button" type="button" style="margin-right: 3.8rem; background-color: white; border: none;">
                             <i id="heart-icon" onclick="handleLike()" class="fa-regular fa-heart fa-lg" style="color: #19885c;"></i>
                         </button>

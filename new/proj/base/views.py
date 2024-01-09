@@ -272,8 +272,26 @@ def bookmarks(request):
         username_profile_list.append(profile_lists)
         
     suggestions_username_profile_list = list(chain(*username_profile_list))
-    return render(request,'bookmarks.html',{'suggestions':suggestions_username_profile_list})
+    if request.method=="POST":
+        post_user=request.POST['post_user']
+        curr_user=request.user.username
+        curr_post_id=request.POST['post_id']
+        save_post=models.Post.objects.get(id=curr_post_id)
+        # caption=save_post.caption
+        # image=save_post.image
+        # likes=save_post.likes
+        
+        if models.SavePost.objects.filter(curr_user=curr_user,post=save_post).first():
+            delete_save_post=models.SavePost.objects.get(curr_user=curr_user,post=save_post)
+            delete_save_post.delete()
+            return redirect('bookmarks')
+        else:
+            save_post_new=models.SavePost.objects.create(curr_user=curr_user,post_user=post_user,post=save_post)
+            save_post_new.save()
+            return redirect('bookmarks')
+    save_pos=models.SavePost.objects.filter(curr_user=request.user.username)
 
+    return render(request,'bookmarks.html',{'suggestions':suggestions_username_profile_list,'save_post':save_pos})
 
 
 def search(request):
@@ -313,11 +331,12 @@ def communityProfile(request, pk):
             can_post=False
 
         user_followers=len(models.CommunityFollow.objects.filter(user=user))
+        prof=models.Profile.objects.get(user=request.user)
         # user_following=len(models.CommunityFollow.objects.filter(follower=pk))
         if request.method=="POST":
             image=request.FILES.get('image')
             caption=request.POST['caption']
-            new_post=models.CommunityPost.objects.create(community_user=user,image=image,caption=caption)
+            new_post=models.CommunityPost.objects.create(community_user=user,image=image,caption=caption,curr_user=prof)
             new_post.save()
             
         context = {
@@ -325,7 +344,8 @@ def communityProfile(request, pk):
             'posts': posts,
             'user_followers':user_followers,
             'button':button,
-            'can_post':can_post
+            'can_post':can_post,
+            'prof':prof
         }
 
         return render(request, 'communityProfile.html', context)
@@ -375,10 +395,17 @@ def save(request):
     if request.method=="POST":
         post_user=request.POST['post_user']
         curr_user=request.user.username
-        save_post=models.Post.objects.get(user=post_user)
-        caption=save_post.caption
-        image=save_post.image
-        likes=save_post.likes
-        save_post_new=models.SavePost.objects.create(curr_user=curr_user,post_user=post_user,caption=caption,image=image,likes=likes)
-        save_post_new.save()
-        return redirect('home')
+        curr_post_id=request.GET.get('post_id')
+        save_post=models.Post.objects.get(id=curr_post_id)
+        # caption=save_post.caption
+        # image=save_post.image
+        # likes=save_post.likes
+        
+        if models.SavePost.objects.filter(curr_user=curr_user,post=save_post).first():
+            delete_save_post=models.SavePost.objects.get(curr_user=curr_user,post=save_post)
+            delete_save_post.delete()
+            return redirect('home')
+        else:
+            save_post_new=models.SavePost.objects.create(curr_user=curr_user,post_user=post_user,post=save_post)
+            save_post_new.save()
+            return redirect('home')
