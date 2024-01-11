@@ -225,8 +225,9 @@ main::-webkit-scrollbar{
 
 .post_footer{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     margin-top: 10px;
+    margin-left: -4rem;
 
 
 }

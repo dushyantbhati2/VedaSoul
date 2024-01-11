@@ -384,7 +384,7 @@ div.banner {
 .wrapper-content .timeline ul.tweets li .actions {
   display: flex;
   margin-top: 20px;
-}
+  justify-content: space-around;}
 
 .wrapper-content .timeline ul.tweets li .actions a {
   display: flex;

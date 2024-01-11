@@ -90,10 +90,19 @@
               {% if post.image %}
               <img class="post-img" src="{{post.image.url}}" style=" border-radius: 20px;width:430px !important;margin-top:30px;margin-bottom: 10px;">
               {% endif %}
-              <div class="actions">
+              <div class="actions" style="display: flex;
+              margin-top: 20px;
+              justify-content: space-around;">
                 <a href=""><img src="{% static 'img/comments.svg' %}" alt="Comments"> 0</a>
                 <a href=""><img src="{% static 'img/retweet.svg' %}" alt="Retweet"> 0</a>
                 <a href=""><img src="{% static 'img/like.svg' %}" alt="Like"> 1</a>
+                <form method="POST" action="/deletepost?post_id={{post.id}}">
+                {% csrf_token %}
+                <input type="hidden" value="{{post.user}}" name="post_user">
+                {% if can_delete %}
+                <button style="background: white;border: none;cursor: pointer;" type="submit"><img  style="width: 1.5rem;" src="{% static 'img/delete.svg' %}" alt="Like"></button>
+                {% endif %}
+                </form>
               </div>
             </div>
           </li>
@@ -150,12 +159,11 @@
   <form id="edit-profile-form" style=" box-shadow:1px 1px 10px 1px rgba(0,0,0,0.7);border-radius:30px;background-color:white;" method="POST"  enctype="multipart/form-data" action="{% url 'update' %}">
     {% csrf_token %}
     <div style="display:flex; ">
-    <img class="profile-change" style="border-radius: 50%;height:10vh;margin:8px;border:2px solid  #19885c;" src="{% static 'img/avatar.png' %}" alt="Uploaded Image">
+    <img class="profile-change" style="border-radius: 50%;height:10vh;margin:8px;border:2px solid  #19885c;" src="{{user_prof.profimag.url}}" alt="Uploaded Image">
 
 
     <div class="upload_file">
-      
-    <input type="file" id="file_input2" name="image" >
+    <input type="file" id="file_input2" name="image">
     <label class="label-input" for="file_input2">Edit Image</label>
     </div>
    
@@ -163,11 +171,11 @@
   </div>
   
       <label for="username">Name:</label><br>
-      <input type="text" id="username" name="name" ><br>
+      <input type="text" id="username" name="name" value="{{user_prof.name}}"><br>
       
       <label for="bio">Bio:</label><br>
      
-      <textarea class="bio-input" id="bio" name="bio" rows="4" cols="50" placeholder="This is my bio..."></textarea><br>
+      <textarea class="bio-input" id="bio" name="bio" rows="4" cols="50" >{{user_prof.bio}}</textarea><br>
 
       <br>
       

@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.models import User,auth
 from django.contrib import messages
+from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from . import models
 from itertools import chain
@@ -127,6 +128,9 @@ def profile(request,pk):
         username_profile_list.append(profile_lists)
         
     suggestions_username_profile_list = list(chain(*username_profile_list))
+    can_delete=False
+    if user_prof.user.username == request.user.username:
+        can_delete=True
     context={
         'user_obj':user_obj,
         'user_prof':user_prof,
@@ -135,7 +139,8 @@ def profile(request,pk):
         'user_following':user_following_length,
         'user_followers':user_followers,
         'length':length,
-        'suggestions':suggestions_username_profile_list[:4]
+        'suggestions':suggestions_username_profile_list[:4],
+        'can_delete':can_delete
     }
     return render(request,'profile.html',context)
 @login_required(login_url='login')
@@ -409,3 +414,13 @@ def save(request):
             save_post_new=models.SavePost.objects.create(curr_user=curr_user,post_user=post_user,post=save_post)
             save_post_new.save()
             return redirect('home')
+
+def deletepost(request):
+
+    if request.method=="POST":
+        post_id=request.GET.get('post_id')
+        post_user=request.POST['post_user']
+        print("yrs")
+        delete_post=models.Post.objects.get(id=post_id,user=post_user)
+        delete_post.delete()
+        return redirect('profile/'+ post_user)

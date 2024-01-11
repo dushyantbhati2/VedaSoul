@@ -139,7 +139,13 @@
                 {% if post.image %}
                 <img src="{{post.image.url}}" alt="java18">
                 {% endif %}
-                <div class="post_footer">
+                <div
+                 style="  
+                display: flex;
+                justify-content: space-around;
+                margin-top: 10px;
+                margin-left: -4rem;"
+                class="post_footer">
 
                     <span class="material-icons" style="margin-top: 0.1rem;">chat</span>
                     <form action="/save?post_id={{post.id}}" method="POST" enctype="multipart/form-data">

@@ -22,6 +22,7 @@ urlpatterns = [
     path('follow',views.follow,name='follow'),
     path('search',views.search,name='search'),
     path('bookmarks',views.bookmarks,name='bookmarks'),
+    path('deletepost',views.deletepost,name='deletepost'),
     path('community_like',views.community_like,name='community_like'),
     path('community_join',views.community_join,name='community_join'),
     path('save',views.save,name='save'),
