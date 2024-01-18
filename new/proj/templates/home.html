@@ -20,7 +20,7 @@
       <link rel="preconnect" href="https://fonts.googleapis.com">
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
       <link href="https://fonts.googleapis.com/css2?family=Oxygen&display=swap" rel="stylesheet">
-      <script>
+      {% comment %} <script>
         // Function to toggle the button text
         function toggleSubscribe() {
             var subscribeButton = document.getElementById('subscribeBtn');
@@ -35,7 +35,7 @@
             // Additional functionality can be added for the subscribe state
         }
         }
-    </script>
+    </script> {% endcomment %}
 
 </head>
 <body>
@@ -234,12 +234,18 @@
        
         <div class="email_input">
             <span class="material-icons aside_search-icon">email</span>
-            <input id="emailInput" type="email" placeholder="Email">
+            
+           
  
         </div>
 
         <div class="subscribe">
-            <button id="subscribeBtn" class="subscribe-btn" onclick="toggleSubscribe()">Subscribe</button>
+            <form method="POST" action="{% url 'send_mail' %}">
+                {% csrf_token %}
+                {% comment %} <input type="email" name="email" placeholder="type your email"/> {% endcomment %}
+                <input id="emailInput" type="email"  name="user-email" placeholder="Email"/>
+                <button type="submit" id="subscribeBtn" class="subscribe-btn">Subscribe</button>
+            </form>
         </div>
     </div>
         

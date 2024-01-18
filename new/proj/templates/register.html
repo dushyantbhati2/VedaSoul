@@ -12,6 +12,9 @@
 
 <body>
   <div class="container">
+          {%for i in messages%}
+            <p>{{i}}<p>
+          {% endfor %}
     <form class="registration-form" action="" method="POST">
       {% csrf_token %}
       <h2  style="font-weight:bold">Register</h2>

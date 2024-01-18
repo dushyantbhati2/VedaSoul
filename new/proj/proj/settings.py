@@ -128,9 +128,11 @@ MEDIA_ROOT=os.path.join(BASE_DIR,'media')
 
 # Email
 
-# EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-# EMAIL_HOST = 'smtp.gmail.com'
-# EMAIL_POST = 587
-# EMAIL_USE_TLS = True
-# EMAIL_HOST_USER ='klaxay0505@gmail.com'
-# EMAIL_HOST_PASSWORD ='tlig dcti nhhb ewae'
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER ='dushyant3291@gmail.com'
+EMAIL_HOST_PASSWORD ='oliqrjqkgxgzyjrl'
+EMAIL_TIMEOUT = 10  # Set the timeout to 30 seconds (adjust as needed)
+

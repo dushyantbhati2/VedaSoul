@@ -3,6 +3,8 @@ from django.contrib.auth.models import User,auth
 from django.contrib import messages
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
+from django.core.mail import send_mail,BadHeaderError
+from django.conf import settings
 from . import models
 from itertools import chain
 import random
@@ -33,7 +35,7 @@ def register(request):
         email=request.POST['email']
         password=request.POST['password']
         cnfpassword=request.POST['cnfPassword']
-        # name=request.POST['name']
+        name=request.POST['name']
         if password==cnfpassword:
             if User.objects.filter(email=email).exists():
                 messages.info(request,'Email already Registered')
@@ -47,7 +49,7 @@ def register(request):
                 user_login=auth.authenticate(username=username,password=password)
                 auth.login(request,user_login)
                 user_model=User.objects.get(username=username)
-                new_prof=models.Profile.objects.create(user=user_model,id_user=user_model.id)
+                new_prof=models.Profile.objects.create(user=user_model,id_user=user_model.id,name=name)
                 new_prof.save()
                 return redirect('home')
         else:
@@ -424,3 +426,32 @@ def deletepost(request):
         delete_post=models.Post.objects.get(id=post_id,user=post_user)
         delete_post.delete()
         return redirect('profile/'+ post_user)
+    
+def mail(request): 
+    if request.method=="POST":
+        emails=request.POST.get('user-email')
+        subject = 'Veda Soul'
+        message = 'Welcome to Veda Soul'
+        from_email = settings.EMAIL_HOST_USER
+        recipient_list = [emails]
+        print(recipient_list)
+        send_mail(subject, message, from_email, recipient_list,fail_silently=False)
+        return redirect('home')
+    
+# def forgotemail(request):
+#     if request.method=="POST":
+#         emails=request.POST.get('user-email')
+#         subject = 'Veda Soul'
+#         text='''you are receiving this email because you requested a password reset for your user account at 127.0.0.1:8000. Please go to the following page and choose a new password:
+#         Your username, in case you have forgotten:
+#         Thanks for using our site!
+#         The 127.0.0.1:8000 team'''
+#         message = text
+#         from_email = settings.EMAIL_HOST_USER
+#         recipient_list = [emails]
+#         print(recipient_list)
+#         send_mail(subject, message, from_email, recipient_list, fail_silently=False)
+#         return redirect('password_reset_done')
+    
+# def PasswordReset(request):
+#     return render(request,'password_reset_form.html')
