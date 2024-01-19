@@ -1,0 +1,168 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,900&display=swap');
+*{
+  
+margin: auto;
+font-family: 'Oxygen', sans-serif;
+background: #dfd7d7;
+}
+
+body,html{
+    position :relative;
+    background-image:url('https://t3.ftcdn.net/jpg/06/23/78/62/240_F_623786261_b4QBnP3D3oHFjX2yMW0DxwmvXOD5WdfD.jpg');
+    margin: 0;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    width:100vw;
+  
+}
+p{
+    background-color:white;
+    font-size:16px;
+    color: #6a6a6a;
+}
+    
+     
+      
+.log-heading{
+    display:flex;
+    flex-direction: column;
+    justify-content:start;  
+    background-color:white;
+    margin-bottom: 30px;
+
+}
+
+.heading{
+   align-items: start;
+   background-color: white;
+    font-size: 40px;
+    margin-bottom: 5px;
+    color:black;
+
+}
+
+
+
+
+main{
+    
+    display: block;
+    box-sizing: border-box;
+    align-items: center;
+    height: 34rem;
+    width: 24rem;
+    background: white;
+    display: grid;
+    place-items: center;
+    border-radius: 5px;
+    margin-top: 10rem;
+   padding:0%;
+ 
+}
+
+
+form{
+    
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: white;
+  
+
+ }
+
+input{
+    margin-top:2rem;
+    padding: 1.1rem;
+    width: 100%;
+    background: white;
+    outline: none;
+    margin:1rem 3rem;
+    border: none;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    border: solid 1px #33333328;
+   
+   
+}
+input[type=email]:focus {
+    border: 2px solid rgba(36, 203, 83, 0.841);
+   
+  }
+  input[type=password]:focus {
+    border: 2px solid rgba(36, 203, 83, 0.841);
+  }
+
+button{
+    padding: 0.8rem;
+    width: 75%;
+    margin:1rem;
+    border: none;
+    background-color: rgb(106, 200, 35);
+    border-radius: 5px;
+    color: white;
+    font-size:1.4rem;
+   margin-top:10%;
+    z-index:2;
+    background-image: linear-gradient(to right,rgba(13, 250, 80, 0.841), rgba(34, 158, 69, 0.841));
+
+}
+
+button:hover{
+    cursor: pointer;
+    background-image: linear-gradient(to right,rgba(34, 158, 69, 0.841),rgba(13, 250, 80, 0.841));
+
+}
+
+
+.login_below{
+    background-color: white;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    z-index:2;
+}
+.forgot-pass{
+    background-color: white;
+    font-size:0.8rem;
+    margin-right:0px;
+    z-index:2;
+    color:rgba(28, 174, 69, 0.845); 
+
+    
+}
+.register{
+    color: black;
+    background-color: white;
+    text-decoration: none;
+    font-size:0.8rem;
+    z-index:2;
+}
+.sign-in{
+    display:flex;
+   margin-top: 2%;
+   background-color: white;
+   z-index:2;
+    align-items: center;
+    gap: 7px;
+    
+
+}
+.Not_member{
+    color:black;
+    background-color: white;
+    font-size:0.8rem;
+    z-index:2;
+}
+
+
+
+.register-link{
+    color:rgba(28, 174, 69, 0.845); 
+}
+

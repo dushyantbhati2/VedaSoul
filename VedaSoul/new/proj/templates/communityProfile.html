@@ -1,0 +1,296 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>  
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+
+      <!-- <link rel="stylesheet" href="node_modules/reset.css/reset.css"> -->
+
+
+      <link rel="stylesheet" href="{% static 'css/home.css' %}">
+      <link rel="stylesheet" href="{% static 'css/community.css' %}">
+      <link rel="stylesheet" href="{% static 'css/communityProfile.css' %}">
+
+      <link rel="icon" href="favicon.png">
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Oxygen&display=swap" rel="stylesheet">
+      <script>
+        // Function to toggle the button text
+        function toggleSubscribe() {
+            var subscribeButton = document.getElementById('subscribeBtn');
+    
+            if (subscribeButton.textContent === 'Subscribe') {
+                subscribeButton.textContent = 'Subscribed';
+                // Additional functionality can be added for the subscribed state
+            } else {
+                subscribeButton.textContent = 'Subscribe';
+                // Additional functionality can be added for the subscribe state
+            }
+        }
+    </script>
+    
+    
+      
+</head>
+<body>
+
+    <!-- nav bar starts -->
+    <nav >
+        
+        <a href="{% url 'home' %}">
+        <img class="logo"  src="{% static 'img/ayurveda design.png'%}">
+       </a>
+        <!-- --------------------------------        this is for site logo   ----------------------------------------                          -->
+       
+        <div class="Menu_options active">
+            
+            <span style = "font-size: 2rem;"class="material-icons">home</span>
+            <a href="{% url 'home' %}" style="text-decoration: none ;color:black">
+            <h2>Home</h2>
+            </a>
+        </div>
+
+        <div class="Menu_options">
+            <span style = "font-size: 2rem;"class="material-icons">tag</span>
+            <h2>Explore</h2>
+        </div>
+
+        <div class="Menu_options">
+            <span style = "font-size: 2rem;"class="material-icons">group</span>
+            <a href="{% url 'community' %}" style="text-decoration: none ;color:black">
+            <h2>Community</h2>
+        </a>
+        </div>
+
+        <div class="Menu_options">
+            <span style = "font-size: 2rem;"class="material-icons">bookmark</span>
+            <h2>Bookmarks</h2>
+        </div> 
+
+        <div class="Menu_options">
+            <span style = "font-size: 2rem;"class="material-icons">person</span>
+          <a href="{% url 'profile' user.username %}" style="text-decoration: none ;color:black">
+            <h2>Profile</h2>
+        </a> 
+        </div> 
+
+        <div class="Menu_options">
+            <span style = "font-size: 2rem;"class="material-icons">book</span>
+            <a style="text-decoration: none;color: black;" href="{% url 'ebooks'%}" ><h2>E-Books</h2></a>
+        </div> 
+       
+
+        <button onclick="togglec()" id ="post-btn"class="tweet_btn">Post</button>
+
+
+    </nav>
+    <!-- nav bar end -->
+
+  
+    <!-- main section start -->
+    <main class="community-main">
+   
+        <div class="header">
+            <h2>{{profile_details.user}}</h2>
+        </div>
+        
+        
+
+        <div class="community-profile_box1">
+         
+                  <img src="{{profile_details.profile_imag.url}}" alt="profile image">
+      </div>
+
+      <div class="community-profile_box2">
+         
+
+    
+        <div class="community-name-box">
+              <p class="community-name"style="font-size:1.9rem;margin:0px;margin-top:10px;margin-bottom:10px;">{{profile_details.user}}</p>
+              
+              
+              <div style="margin-top: -1.5rem;width: 75%; "><p class="community-about" style="width: 100%;" >{{profile_details.about}}</p>
+              <p class="community-about-ab" style="font-weight: bold;">{{user_followers}} Members</p>
+        
+            </div>
+            </div>
+        <div class="join-commu" style="display: grid;">
+            {% if can_post %}
+            <button onclick="togglec()" class="post-btn">post</button>
+            {% endif %}
+            <form action="{% url 'community_join' %}" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="follower" value="{{user.username}}">
+            <input type="hidden" name="user" value="{{profile_details.user}}">
+            <button type="submit" name="leave" class="potbtn">{{button}}</button>
+            </form>
+        </div>
+    </div>
+
+
+    {% for post in posts reversed %}
+    <div class="post">
+        <div class="post_profile-image">
+            <img src="{{post.curr_user.profimag.url}}" alt="java-logo">
+
+        </div>
+
+        <div class="post_body">
+            <div class="post_header">
+                <div class="post_header-text">
+                    <h3 style="font-size: 1.3rem;margin-top:1px;"> {{post.curr_user.name}}
+                        <span class="header-icon-section">
+                            <span class="material-icons post_badge">verified</span>@{{post.curr_user.user}}
+                        </span>
+                    </h3>
+                </div>
+
+                <div class="post_header-discription"style="max-width:30rem;">
+                    <p>{{post.caption}}</p>
+                    <br>
+
+                </div>
+                
+            </div>
+            {% if post.image %}
+            <img src="{{post.image.url}}" alt="java18">
+            {% endif %}
+            <div class="post_footer">
+
+                <span class="material-icons">chat</span>
+                <span class="material-icons">bookmark</span>
+                
+                <a href="/community_like?post_id={{post.id}}" style="display: flex; text-decoration: none; font-weight: 600;color: black;margin-right: 6rem;">
+                    <span id="like-count">{{post.likes}}</span>
+                    <button id="like-button" type="button" style="margin-right: 3.8rem; background-color: white; border: none;">
+                        
+                    
+                        <span style="margin-bottom: 2px;" class="material-icons" onclick="handleLike()">favorite_border</span>
+                    </button>
+                </a>
+                
+                <script>
+                // Function to handle the like/unlike action
+                function handleLike() {
+                    var icon = document.getElementById('heart-icon');
+                    var likeCount = document.getElementById('like-count');
+                    
+                    // Check if the post is already liked
+                    var isLiked = localStorage.getItem('post_' + '{{post.id}}');
+                    
+                    if (!isLiked) {
+                        icon.style.color = 'red'; // Change the color to red
+                        likeCount.textContent = parseInt(likeCount.textContent) + 1; // Update like count
+                        
+                        // Store liked state in local storage
+                        localStorage.setItem('post_' + '{{post.id}}', true);
+                    } else {
+                        icon.style.color = '#19885c'; // Change the color back to default
+                        likeCount.textContent = parseInt(likeCount.textContent) - 1; // Update like count for unlike
+                        
+                        // Remove liked state from local storage (unlike)
+                        localStorage.removeItem('post_' + '{{post.id}}');
+                    }
+                }
+                    
+                // Check if the post was previously liked and update the UI accordingly
+                window.onload = function() {
+                    var isLiked = localStorage.getItem('post_' + '{{post.id}}');
+                    if (isLiked) {
+                        var icon = document.getElementById('heart-icon');
+                        icon.style.color = 'black'; // Change the color to red if post was previously liked
+                    }
+                };
+                </script>
+              
+                
+
+            </div>
+
+        </div>
+
+    </div>    
+    {% endfor %}
+    </main>
+    <!-- main section end -->
+
+    <!-- aside element start -->
+    <aside>
+
+
+        <div class="community-search_input">
+            <span class="material-icons aside_search-icon">search</span>
+            <input type="text" placeholder="Search">
+ 
+        </div>
+
+        <div class="community-aside_container">
+            
+            
+            <h2 style="margin-top: 1%"><b>Subscribe to our Newsletter</b></h2>
+            <p style="color: #333;margin-bottom: -1px;">Email Address</p>
+       
+        <div class="email_input">
+            <span class="material-icons aside_search-icon">email</span>
+            <input type="email" placeholder="Email">
+ 
+        </div>
+
+        <div class="subscribe">
+            <button id="subscribeBtn" class="subscribe-btn" onclick="toggleSubscribe()">Subscribe</button>
+           
+            
+        </div>
+    </div>
+        
+      
+        
+        
+    </aside>
+
+    
+        <div id="post-box"class="hidden-post-box" style="border-radius: 29px;">
+            <form action="" method="POST" enctype="multipart/form-data" >
+            {% csrf_token %}
+                <div class="hidden-post-box-input">
+                    <div class="hiddenpostflex">
+                     <img src="{{prof.profimag.url}}" alt="profile image" style="margin-top: 28px;"> 
+                    <input class="hidden-post-input" 
+                    style="border:none;width:80%; 
+                           outline: none;
+                           font-size: 1.3rem;" 
+                    type="text" name="caption" placeholder="What is happening?">
+                    </div>
+                    
+                    <div class="hiddenpostflex2" style="display: flex;align-items:flex-end;justify-content:right;">
+                        <input type="file" id="file_input3" name="image" >
+                        <label class="label-input" for="file_input3" style="width:70%;border: #333;text-align:left;border-radius:10%">                    <div class="material-icons">image</div>
+                        </label>
+                        
+                        
+                        <button type="submit" class="hidden-post2-btn" style="margin-right: 1.0rem;">Post</button>
+                </div>
+    
+                </div>
+            </form>
+    
+    
+        </div>
+    
+
+        <script src="{% static 'js/communityProfile.js' %}"></script>
+
+
+
+    
+</body>
+</html>

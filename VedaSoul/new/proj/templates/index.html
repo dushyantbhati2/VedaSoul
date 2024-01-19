@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'css/index.css' %}">
+  <title>Ayurvedic Community</title>
+  {% comment %} <link rel="stylesheet" href=link rel="preconnect" href="https://fonts.googleapis.com"> {% endcomment %}
+  {% comment %} <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oxygen&display=swap" rel="stylesheet">
+</head> {% endcomment %}
+<body>
+ 
+  <header>
+    <nav>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="{% url 'login' %}">E-Books</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+    
+  </header>
+<div class = "image_set"> 
+
+</div>
+<div class = "text_upper">
+   <h1> Your Gateway to <span class="ayur_text_color">Ayurvedic</span> Wisdom</h1>
+</div>
+  <div class="container">
+  
+    <div class="ayur"></div>
+    <div class="text-sc">
+      <!-- Your content -->
+      <h1> </h1>
+      <p class="text_upper_para">
+        Unlock the ancient secrets of Ayurveda, where holistic wellness meets timeless wisdom. Join our vibrant community dedicated to embracing the art of balanced living. Explore a treasure trove of holistic remedies, expert insights, and a supportive space to nurture your well-being. Discover personalized health advice, engage in discussions, and delve into the rich tapestry of Ayurvedic traditions. Let's embark on a journey towards natural healing, inner harmony, and a life of holistic wellness together
+      </p>
+    </div>
+    <a class="button" href="{% url 'login' %}"><button >Get Started</button></a>
+    <div class="button"></div>
+  </div>
+
+  <footer>
+  </footer>
+
+</body>
+</html>

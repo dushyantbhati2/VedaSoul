@@ -1,0 +1,62 @@
+/* tailwind-styles.css */
+
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+
+.bg-gray-100 {
+    background-color: #f7fafc;
+}
+
+
+.my-4 {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+
+.p-4 {
+    padding: 1rem;
+}
+
+.rounded-md {
+    border-radius: 0.375rem; 
+}
+
+
+.shadow-md {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.text-blue-500 {
+    color: #4299e1;
+}
+
+.text-xl {
+    font-size: 1.25rem; 
+}
+
+.font-semibold {
+    font-weight: 600;
+}
+
+.flex {
+    display: flex;
+}
+
+.items-center {
+    align-items: center;
+}
+
+.mb-2 {
+    margin-bottom: 0.5rem;
+}
+
+.text-gray-600 {
+    color: #4a5568;
+}
+
+.text-gray-700 {
+    color: #2d3748;
+}

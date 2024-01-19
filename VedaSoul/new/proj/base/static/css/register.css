@@ -1,0 +1,111 @@
+* body ,html{
+  font-family: 'Oxygen', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    background-image: url('https://t3.ftcdn.net/jpg/02/58/01/54/240_F_258015476_Lcr5xKfR421qgbfFrzMP0MmjN7jdVSqg.jpg');
+    background-repeat: no-repeat;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    width:100vw;
+
+  }
+  
+  .container {
+    width: 100%;
+    max-width: 400px;
+    padding: 5px;
+    margin: auto; /* Center the container horizontally */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background for the form */
+    border-radius: 5px;
+    box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.2);
+  }
+  
+  .registration-form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .registration-form h2 {
+    text-align: center;
+    font-size: 30px;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] {
+    width: calc(100% - 10px);
+    padding: 9px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    outline: none;
+    margin-bottom:10px;
+    
+  }
+  
+  input[type=text]:focus {
+    border: 2px solid rgba(36, 203, 83, 0.841);
+ 
+  }
+  input[type=email]:focus {
+    border: 2px solid rgba(36, 203, 83, 0.841);
+   
+  }
+  input[type=password]:focus {
+    border: 2px solid rgba(36, 203, 83, 0.841);
+  }
+  
+  input[type="submit"] {
+    width: 80%;
+    padding: 10px;
+    background-color: rgba(36, 203, 83, 0.841);
+    color:white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 23px;
+    margin-left: 35px;
+    margin-top:20px;
+    background-image: linear-gradient(to right,rgba(13, 250, 80, 0.841), rgba(34, 158, 69, 0.841));
+    
+    
+    
+  }
+  
+  input[type="submit"]:hover {
+ 
+    
+    background-image: linear-gradient(to right,rgba(34, 158, 69, 0.841),rgba(13, 250, 80, 0.841));
+  
+    cursor:pointer; 
+  }
+
+
+  .login-link2{
+    color:rgba(28, 174, 69, 0.845); 
+    margin-left: 4px;
+
+  }
+  
+  .login-link{
+    margin-top:20px;
+    text-align: center;
+  }

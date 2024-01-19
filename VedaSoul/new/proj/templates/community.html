@@ -1,0 +1,192 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>  
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+
+
+
+      <link rel="stylesheet" href="{% static 'css/home.css' %}">
+      <link rel="stylesheet" href="{% static 'css/community.css' %}">
+
+      <link rel="icon" href="favicon.png">
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Oxygen&display=swap" rel="stylesheet">
+      
+</head>
+<body>
+
+    <!-- nav bar starts -->
+    <nav >
+      
+        <a href="{% url 'home' %}">
+          <img class="logo" src="{% static 'img/ayurveda design.png'%}">
+       </a>
+        <!-- --------------------------------        this is for site logo   ----------------------------------------                          -->
+       
+        <div class="Menu_options active">
+            
+            <span class="material-icons">home</span>
+            <a href="{% url 'home' %}" style="text-decoration: none ;color:black">
+            <h2>Home</h2>
+            </a>
+        </div>
+
+        <div class="Menu_options">
+            <span class="material-icons">tag</span>
+            <h2>Explore</h2>
+        </div>
+
+        <div class="Menu_options">
+            <span class="material-icons">group</span>
+            <a href="{% url 'community' %}" style="text-decoration: none ;color:black">
+            <h2>Community</h2>
+        </a>
+        </div>
+
+        <div class="Menu_options">
+            <span class="material-icons">bookmark</span>
+            <h2>Bookmarks</h2>
+        </div> 
+
+        <div class="Menu_options">
+            <span class="material-icons">person</span>
+          <a href="{% url 'profile' user.username %}" style="text-decoration: none ;color:black">
+            <h2>Profile</h2>
+        </a> 
+        </div> 
+
+        <div class="Menu_options">
+            <span class="material-icons">book</span>
+            <a style="text-decoration: none;color: black;" href="{% url 'ebooks'%}" ><h2>E-Books</h2></a>
+        </div> 
+       
+
+        <button onclick="togglep()" id ="post-btn"class="tweet_btn">Post</button>
+
+
+    </nav>
+    <!-- nav bar end -->
+
+  
+    <!-- main section start -->
+    <main>
+        <div class="search_input">
+            <span class="material-icons aside_search-icon">search</span>
+            <input type="text" placeholder="Search">
+ 
+        </div>
+        <div class="header" style="display: flex;justify-content: space-between;align-items: flex-end;">
+            <h2>Discover Communities</h2>
+            <div class="subscribe" >
+              <button onclick="togglediv()" class="subscribe-btn " style="width: 8rem; ">Create Community</button>
+          </div>
+        </div>
+        
+
+        <div class="cmt_follower_container">
+        
+        
+            <aside class="widgets">
+            <div class="widget follow">
+              <div class="title">
+                <strong>Who to follow</strong>
+               
+              </div>
+    
+              <ul >
+                  {% for users in community_users%}
+                  <a class="profile"  href="{% url 'communityProfile' users.username %}" >
+                  
+
+                    <div class="cmt_profile-image">
+                        {% if users.image %}
+                        <img  src="{{users.image.url}}" alt="Avatar">
+                        {% endif %}
+                    </div>
+                    <div class="cmt-infollow">
+
+                    <div class="info">
+                      <strong >{{users.username}}</strong>
+                      
+                    </div>
+                    
+                    </div>
+                </a>
+              {% endfor %}  
+              </ul>
+    
+            </div>
+          </aside>
+        </div>
+
+    </main>
+    <!-- main section end -->
+
+    <!-- aside element start -->
+    <aside>
+
+
+
+        <div class="aside_container">
+            
+            <h2 style="margin-top: 1%"><b>Subscribe to our Newsletter</b></h2>
+            <p style="color: #333;margin-bottom: -1px;">Email Address</p>
+       
+        <div class="email_input">
+            <span class="material-icons aside_search-icon">email</span>
+            <input type="email" placeholder="Email">
+ 
+        </div>
+
+        <div class="subscribe">
+            <button class="subscribe-btn">Subscribe</button>
+        </div>
+    </div>
+        
+   
+        </div>
+        
+    </aside>
+    
+    <!-- hidden-edit-profile -->
+    <form id="edit-profile-form" style=" box-shadow:1px 1px 10px 1px rgba(0,0,0,0.7);border-radius:30px;background-color:white;height: 440px !important;margin-top: 2rem;margin-left:-2rem;" method="POST"  enctype="multipart/form-data" action="">
+      {% csrf_token %}
+      <div style="display:flex;justify-content: space-between;">
+      <img class="cmt-profile-img"  src="{% static 'img/avatar.png' %}" alt="Uploaded Image">
+  
+      <div class="upload_file">
+      
+        <input type="file" id="file_input2" name="image" >
+        <label class="label-input" for="file_input2">Upload Image</label>
+        </div>
+      </div>
+    
+        <label for="username">Name:</label><br>
+        <input class="username-input" type="text" id="username" name="username" ><br>
+        
+        <label for="bio" style="width:100% ;">About:</label><br>
+        <textarea class="bio-input" id="bio" name="bio" rows="4" cols="50" placeholder="About your community"></textarea><br>
+  
+        <br>
+        
+        <button type="submit" class="save-profile-btn">Save</button>
+      </form>  
+      
+
+
+    <script src="{% static 'js/community.js' %}"></script>
+
+
+    
+</body>
+</html>

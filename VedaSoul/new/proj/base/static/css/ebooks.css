@@ -1,0 +1,148 @@
+
+
+body {margin:0;}
+
+  .navbar{
+    display: flex;
+    background-color:rgb(60, 124, 197);
+    position: fixed;
+    top:0;
+    width: 100%;
+    font-size: 20px;
+}
+
+.nav-right{
+    text-align: right;
+    float:right;
+}
+
+.section-1{
+    padding:40px;
+    background-image: url("https://ak0.picdn.net/shutterstock/videos/20344780/thumb/1.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    height:550px;
+    background-size: 100% 100%;
+}
+
+.section-1-text{
+    display: block;
+    border: black;
+}
+
+h1{
+    font-size: 100px;
+    color: white;
+}
+.section-1 p{
+    font-size: 20px;
+    color: rgb(255, 255, 255);
+}
+
+.section-2
+{
+    padding: 35px;
+}
+
+.gallery div{
+    display: inline !important;
+}
+
+.section-2  a{
+    text-decoration: none;
+}
+
+.section-2 p{
+    color: rgb(0, 0, 0);
+    text-align: center;
+}
+
+
+div.gallery a:hover {
+    border: 3px solid white;
+}
+
+div.gallery image-holder desc {
+    text-align: center;
+}
+
+img{
+    height: 300px;
+    width:270px;
+}
+
+.btn
+{
+    display: block;
+    border-radius: 5px;
+    color:white;
+    background-color: blue;
+    font-size:20px;
+    text-decoration: none;
+    width:fit-content;
+    height:fit-content;
+    padding:5px;
+}
+
+.btn:hover{
+    background-color: rgb(31, 199, 106)ue;
+}
+
+li {
+    display: inline;
+    float: left;
+    padding-left: 15px;
+  }
+
+  li a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color:rgb(238, 238, 238);
+  }
+
+  li ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+  }
+
+  li a:hover {
+    background-color: rgb(31, 199, 106);
+  }
+
+  .active {
+    background-color: #04AA6D;
+  }
+
+
+  .section-3{
+      padding:35px;
+  }
+
+  
+  .view-card {
+    float: left;
+    width: 25%;
+    padding: 0 10px;
+}
+  .card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    padding: 16px;
+    text-align: center;
+    display: inline;
+
+  }
+
+  .card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.4);
+  }
+
+  .container {
+    padding: 2px 16px;
+    align-items: center;
+  }
+

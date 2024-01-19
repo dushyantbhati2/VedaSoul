@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oxygen&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    
+   <main>
+    
+    <form method="POST" action="">
+        {% csrf_token %}
+       <div class="log-heading">
+        <p class="heading">Welcome!</p>
+        <p style="font-size: 13px background-color=white">Sign in to your account</p>
+
+    </div>
+        <div>
+            {%for i in messages%}
+            <p>{{i}}<p>
+            {% endfor %}
+        </div>
+        <input type="text" name="email" placeholder="Email"/>
+        <input type="password" name="password" placeholder="Password"/>
+        <a class="forgot-pass" href="{% url 'password_reset' %}" style="font-weight: 500 ; color: #333;">Forgot Password?</a>
+        
+        <button type="submit">Login</button>
+        <div class="sign-in">
+        <p class="Not_member">Not a member? </p>
+        <a class="register-link" href ="{% url 'register' %}" style="background-color: white">Register</a>
+        
+    </div>
+    </form>
+   </main> 
+    
+</body>
+</html>

@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,900&display=swap');
+*{margin: 0;
+padding: 0;
+margin: auto;
+font-family: 'Roboto', sans-serif;
+}
+body,
+html {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background: url("https://sktperfectdemo.com/themepack/herbal/wp-content/themes/skt-herbal/images/slides/slider3.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+
+}
+
+header {
+  background-color: #6dbb1a;
+  color: white;
+  padding: 1em;
+  text-align: center;
+}
+
+
+nav {
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-family: 'Oxygen', sans-serif;
+}
+
+.container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+}
+
+
+.text-sc {
+  max-width: 600px;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: end;
+
+}
+
+nav ul li {
+  margin-right: 40px;
+}
+
+.image_set {
+  position: relative;
+  z-index: 1;
+}
+
+.text_upper {
+  position: absolute;
+  top: 19%;
+  left: 3%;
+  font-size: 1.5rem;
+  color: rgb(0, 0, 0);
+  width: 40%;
+  z-index: 2;
+  font-family: 'Oxygen', sans-serif;
+
+
+}
+
+.ayur_text_color {
+  color: #75C223;
+  font-size: 3.7rem;
+  z-index: 2;
+}
+
+.text_upper_para {
+  position: absolute;
+  top: 42%;
+  left: 3%;
+  /* font-size: 17px; */
+  font-size: 1.1rem;
+  color: #685f5f;
+  width: 30%;
+  z-index: 2;
+  
+}
+
+.button {
+  position: absolute;
+
+  top: 80%;
+  right: 68%;
+  /* Green */
+  border: none;
+  text-align: center;
+}
+
+button {
+  background-color: #61ad10;
+  width: 13rem;
+  height: 3.5rem;
+  border: none;
+  color: #ffffff;
+  text-align: center;
+  border-radius: 0.7rem;
+  box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.2);
+  font-size: 1.55rem;
+  font-weight: 500;
+  font-family: 'Oxygen', sans-serif;
+}
+
+button:hover {
+  background-color: #508d0f;
+  cursor: pointer;
+}
+

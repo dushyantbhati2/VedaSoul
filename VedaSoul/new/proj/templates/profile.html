@@ -1,0 +1,201 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="{% static 'css/profile.css' %}" />
+  <title>Profile</title>
+</head>
+<body>
+
+  <header id="main-header">
+    <div class="container">
+      <nav>
+        <ul>
+            
+          <li ><img  src="{% static 'img/home_icon.svg'%}" style="height: 65%;color:white;"><a href="{% url 'home' %}" style="text-decoration: none;color: #ffffff">Home</a></li>
+          
+          
+        </ul>
+      </nav>
+      <img class="logo" src="{% static 'img/ayurveda design.png' %}" alt="Logo" style="border-radius: 75%;">
+      <div class="side"style="margin-right:-112px;">
+          <input type="text" placeholder="Search on Ayu">
+          <img src="{{user_prof.profimag.url}}" alt="Avatar">
+          
+      </div>
+    </div>
+  </header>
+
+  <div class="banner">
+    <img class="banner-img" src="{% static 'img/profilebackground.jpeg' %}" alt="banner-img">
+  </div>
+
+  <div class="bar">
+    <div class="container">
+      <ul>
+       
+      </ul>
+  
+      <div class="actions">
+        {% if user.username == user_obj.username %}
+        <button onclick="togglediv()" class="edit-profile-btn" >Edit profile</button>
+        {% else %}
+        <form action="{% url 'follow' %}" method="POST">
+        {% csrf_token %}
+        <input type="hidden" value="{{user.username}}" name="follower">
+        <input type="hidden" value="{{user_obj.username}}" name="user">
+        <button type="submit">{{button}}</button>
+        </form>
+        {% endif %}      
+      </div>
+    </div>
+  </div>
+
+  <div class="wrapper-content">
+    <div class="container">
+      <aside class="profile">
+        <img src="{{user_prof.profimag.url}}" class="avatar" alt="Gabriel de Jesus">
+        <h1>{{user_obj.username}}</h1>
+        {% if user_prof.name %}
+        <h2>{{user_prof.name}}</h2>
+        {% endif %}
+        <p>{{user_prof.bio}}</p>
+  
+        <ul class="list">
+          <li><img src="{% static 'img/place.svg' %}" alt="Place">Mumbai,India</li>
+          <li><img src="{% static 'img/url.svg' %}" alt="URL">google.com</li>
+          <li><img src="{% static 'img/joined.svg' %}" alt="Joined">Joined October 2020</li>
+          <li><img src="{% static 'img/born.svg' %}" alt="Born">Born the 19th of December 1998</li>
+        </ul>
+        
+       
+
+      </aside>
+
+      <section class="timeline">
+        <nav>
+          <a href="" class="active">{{length}} Post</a>
+          <a href="">{{user_following}} Following</a>
+          <a href="">{{user_followers}} Followers</a>
+        </nav>
+
+        <ul class="tweets">
+          {% for post in posts reversed %}
+          <li>
+            <img src="{{post.user_profile.profimag.url}}" alt="Avatar">
+            <div class="info">
+              <p style="margin-left: 10px;margin-top: 10px;">{{post.caption}}</p>
+              {% if post.image %}
+              <img class="post-img" src="{{post.image.url}}" style=" border-radius: 20px;width:430px !important;margin-top:30px;margin-bottom: 10px;">
+              {% endif %}
+              <div class="actions" style="display: flex;
+              margin-top: 20px;
+              justify-content: space-around;">
+                <a href=""><img src="{% static 'img/comments.svg' %}" alt="Comments"> 0</a>
+                <a href=""><img src="{% static 'img/retweet.svg' %}" alt="Retweet"> 0</a>
+                <a href=""><img src="{% static 'img/like.svg' %}" alt="Like"> 1</a>
+                <form method="POST" action="/deletepost?post_id={{post.id}}">
+                {% csrf_token %}
+                <input type="hidden" value="{{post.user}}" name="post_user">
+                {% if can_delete %}
+                <button style="background: white;border: none;cursor: pointer;" type="submit"><img  style="width: 1.5rem;" src="{% static 'img/delete.svg' %}" alt="Like"></button>
+                {% endif %}
+                </form>
+              </div>
+            </div>
+          </li>
+          {% endfor %}
+        </ul>
+      </section>
+
+      <aside class="widgets" >
+        <div class="widget follow">
+          <div class="title">
+            <strong>Who to follow</strong>
+            <a href="">Refresh</a>
+            <a href="">View all</a>
+          </div>
+
+          <ul >
+            <li>
+              <div class="profile">
+                <img src="{% static 'img/profileimg2.png' %}" alt="Avatar">
+                <div class="info">
+                  <strong>ayudoctor<span>@aydoc</span></strong>
+                  <button>Follow</button>
+                </div>
+              </div>
+            </li>
+            
+            <li>
+              <div class="profile">
+                <img src="{% static 'img/profileimg3.png' %}" alt="Avatar">
+                <div class="info">
+                  <strong>yog guru <span>@yogo</span></strong>
+                  <button>Follow</button>
+                </div>
+              </div>
+            </li>
+
+            <li>
+              <div class="profile">
+                <img src="{% static 'img/profileimg4.png' %}" alt="Avatar">
+                <div class="info">
+                  <strong>rohan <span>@rohan</span></strong>
+                  <button>Follow</button>
+                </div>
+              </div>
+            </li>
+          </ul>
+
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <!-- hidden-edit-profile -->
+  <form id="edit-profile-form" style=" box-shadow:1px 1px 10px 1px rgba(0,0,0,0.7);border-radius:30px;background-color:white;" method="POST"  enctype="multipart/form-data" action="{% url 'update' %}">
+    {% csrf_token %}
+    <div style="display:flex; ">
+    <img class="profile-change" style="border-radius: 50%;height:10vh;margin:8px;border:2px solid  #19885c;" src="{{user_prof.profimag.url}}" alt="Uploaded Image">
+
+
+    <div class="upload_file">
+    <input type="file" id="file_input2" name="image">
+    <label class="label-input" for="file_input2">Edit Image</label>
+    </div>
+   
+  
+  </div>
+  
+      <label for="username">Name:</label><br>
+      <input type="text" id="username" name="name" value="{{user_prof.name}}"><br>
+      
+      <label for="bio">Bio:</label><br>
+     
+      <textarea class="bio-input" id="bio" name="bio" rows="4" cols="50" >{{user_prof.bio}}</textarea><br>
+
+      <br>
+      
+      <button type="submit" class="edit-profile-btn" style="background-color: #19885c;
+        width: 34%;
+        background-color: #19885c;
+        border: none;
+        color: white;
+        font-size: 0.9rem;
+        border-radius: 30px;
+        height: 36px;
+        cursor: pointer;
+        margin-top: -0.2rem;
+        align-items: center;
+    ">Save</button>
+    </form>  
+    
+  
+    <script src="{% static 'js/profile.js' %}"></script>
+
+
+</body>
+</html>
