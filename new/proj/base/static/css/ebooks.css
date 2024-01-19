@@ -45,6 +45,10 @@ h1{
     padding: 35px;
 }
 
+
+.gallery{
+  width:100%
+}
 .gallery div{
     display: inline !important;
 }
@@ -70,6 +74,7 @@ div.gallery image-holder desc {
 img{
     height: 300px;
     width:270px;
+    border-radius: 2rem;
 }
 
 .btn
@@ -114,9 +119,7 @@ li {
     background-color: rgb(31, 199, 106);
   }
 
-  .active {
-    background-color: #04AA6D;
-  }
+ 
 
 
   .section-3{

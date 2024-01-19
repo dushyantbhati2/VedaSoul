@@ -40,7 +40,7 @@
   
       <div class="actions">
         {% if user.username == user_obj.username %}
-        <button onclick="togglediv()" class="edit-profile-btn" >Edit profile</button>
+        <button onclick="togglediv()" class="edit-profile-btn" style="cursor: pointer;" >Edit profile</button>
         {% else %}
         <form action="{% url 'follow' %}" method="POST">
         {% csrf_token %}

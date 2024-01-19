@@ -79,6 +79,11 @@
             <span style = "font-size: 2rem;"class="material-icons">book</span>
             <a style="text-decoration: none;color: black;" href="{% url 'ebooks'%}" ><h2>E-Books</h2></a>
         </div> 
+
+        <div class="Menu_options">
+            <span style = "font-size: 2rem;"class="material-icons">chat</span>
+            <a style="text-decoration: none;color: black;" href="{% url 'streamlit_view'%}" ><h2>Chat-Bot</h2></a>
+        </div> 
        
 
         <button onclick="togglep()" id ="post-btn"class="tweet_btn">Post</button>
@@ -234,7 +239,8 @@
        
         <div class="email_input">
             <span class="material-icons aside_search-icon">email</span>
-            
+            <input id="emailInput" type="email"  name="user-email" placeholder="Email"/>
+
            
  
         </div>
@@ -243,8 +249,8 @@
             <form method="POST" action="{% url 'send_mail' %}">
                 {% csrf_token %}
                 {% comment %} <input type="email" name="email" placeholder="type your email"/> {% endcomment %}
-                <input id="emailInput" type="email"  name="user-email" placeholder="Email"/>
-                <button type="submit" id="subscribeBtn" class="subscribe-btn">Subscribe</button>
+                <!-- <input id="emailInput" type="email"  name="user-email" placeholder="Email"/> -->
+                <button type="submit" id="subscribeBtn" class="subscribe-btn" onclick="toggleSubscribe()">Subscribe</button>
             </form>
         </div>
     </div>

@@ -8,6 +8,7 @@ from django.conf import settings
 from . import models
 from itertools import chain
 import random
+import subprocess
 # Create your views here.
 def index(request):
     return render(request,'index.html')
@@ -455,3 +456,10 @@ def mail(request):
     
 # def PasswordReset(request):
 #     return render(request,'password_reset_form.html')
+    
+def streamlit_view(request):
+    # Run Streamlit app as a subprocess
+    subprocess.run(["streamlit", "run", "base/streamlit_app/chatbot_app.py"])
+
+    # You can customize this response or redirect to another page after Streamlit is run.
+    return HttpResponse("Streamlit chatbot has been executed.")
