@@ -159,7 +159,7 @@
   <form id="edit-profile-form" style=" box-shadow:1px 1px 10px 1px rgba(0,0,0,0.7);border-radius:30px;background-color:white;" method="POST"  enctype="multipart/form-data" action="{% url 'update' %}">
     {% csrf_token %}
     <div style="display:flex; ">
-    <img class="profile-change" style="border-radius: 50%;height:10vh;margin:8px;border:2px solid  #19885c;" src="{{user_prof.profimag.url}}" alt="Uploaded Image">
+    <img class="profile-change" style="border-radius: 50%;height:13vh;width:14vh;margin:8px;border:2px solid  #19885c;" src="{{user_prof.profimag.url}}" alt="Uploaded Image">
 
 
     <div class="upload_file">
