@@ -9,7 +9,7 @@ from langchain.schema import (
     SystemMessage
 )
 import os 
-os.environ["OPENAI_API_KEY"]="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"
+os.environ["OPENAI_API_KEY"]="Enter your OpenAI key"
 
 # From here down is all the StreamLit UI
 st.set_page_config(page_title="LangChain Demo", page_icon=":robot:")
