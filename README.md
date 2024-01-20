@@ -13,7 +13,7 @@ open terminal and type
 git clone  https://github.com/dushyantbhati2/VedaSoul.git
 
 # To Run 
-
+-> pip install content in requirement.txt 
 1.  Navigate to the "new" directory using "cd new" in the command line interface (CLI).
 2.  Navigate further to the "proj" directory after completing the first step.
 
@@ -21,7 +21,7 @@ git clone  https://github.com/dushyantbhati2/VedaSoul.git
 
 3. Initiate the server by executing the command "python manage.py runserver" to start the server for the project.
 ## DEMO
--> https://www.youtube.com/watch?v=PJISPlYIs2c
+-> https://www.youtube.com/watch?v=PGK0cizJETg
 ## Authors
 
 - [@dushyantbhati]https://github.com/dushyantbhati2
